@@ -1,0 +1,51 @@
+{
+  "name": "sieng-english-learning",
+  "version": "1.0.0",
+  "description": "This app created to learn English",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack --mode production"
+  },
+  "browserslist": [">0.25%, not dead"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fsoc-xvi/sieng-english-learning.git"
+  },
+  "keywords": [
+    "JS",
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "SCSS",
+    "English"
+  ],
+  "author": "Andrey <siletskiyandrey29@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsoc-xvi/sieng-english-learning/issues"
+  },
+  "homepage": "https://github.com/fsoc-xvi/sieng-english-learning#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.1.1",
+    "eslint": "^7.5.0",
+    "eslint-config-google": "^0.14.0",
+    "favicons-webpack-plugin": "^4.2.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2",
+    "ttf-loader": "^1.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {}
+}

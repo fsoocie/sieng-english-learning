@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:display=swap');
+@mixin RobotoThin() {
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+}
+@mixin RobotoMedium() {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+@mixin RobotoRegular() {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+}
+@mixin RobotoMedium() {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+@mixin RobotoBold() {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+}
+@mixin RobotoBlack() {
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
+}
+
+$turquoise: #3CCFCF;
+$turquoise-dark: #2D647C;
+$black: #202002;
+$yellow: #FFF61F;
+$red: #F44336;
+
+
