@@ -1,0 +1,157 @@
+@import "variables";
+
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 80%;
+  margin: 5px auto 15px auto;
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      @include colorBlack(.8);
+      font-size: 2.4em;
+      margin-left: 8px;
+    }
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  &__delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(244,67,54, .9);
+    border-radius: 6px;
+    height: 38px;
+    width: 12%;
+    cursor: pointer;
+    img {
+      width: 12px;
+      height: 12px;
+    }
+    span {
+      font-size: 0.9em;
+      margin-left: 5px;
+      font-weight: 300;
+      color: white;
+    }
+  }
+}
+.content-game {
+  height: 75vh;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .themes-game {
+    @include colorBlack(.75);
+    font-size: 1.8em;
+    font-weight: 300;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20vh;
+    &__cards {
+      padding: 4px;
+    }
+    &__learning {
+      padding: 4px;
+    }
+    &_active {
+      @include colorBlack(.9);
+      border-bottom: 3px $yellow solid;
+      font-weight: 400;
+    }
+  }
+  .game {
+    height: 80%;
+    &__card {
+      height: 50vh;
+      width: 31vw;
+      box-shadow: 1px 4px 8px rgba(32, 32, 2, .25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include colorBlack(.75);
+      font-size: 3em;
+      font-family: Raleway, sans-serif;
+      letter-spacing: 0.03em;
+      background-color: $white;
+      border-radius: 6px;
+    }
+    &__controls {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px auto 0 auto;
+      width: 78%;
+      img {
+        height: 35px;
+        width: 35px;
+      }
+    }
+  }
+}
+.terms {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 0 auto;
+  &__header {
+    @include colorBlack(.8);
+    letter-spacing: 0.01em;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    span {
+      border-bottom: 3px rgba(32,32,2, .8) solid;
+      padding-bottom: 4px;
+    }
+  }
+  &__content {
+    .term {
+      width: 30vw;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      background-color: $white;
+      margin-bottom: 18px;
+      font-family: Raleway, sans-serif;
+      letter-spacing: 0.02em;
+      box-shadow: 1px 1px 4px rgba(244,67,54, .6);
+      &__english-word {
+        border-right: 1.5px rgba(32,32,2, .25) solid;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+      }
+      &__russian-word {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+.edit {
+  margin: 40px auto;
+  height: 56px;
+  width: 28%;
+  color: $white;
+  background-color: $turquoise;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  letter-spacing: 0.015em;
+  cursor: pointer;
+}
