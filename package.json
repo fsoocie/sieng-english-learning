@@ -6,7 +6,9 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
     "build": "cross-env NODE_ENV=production webpack --mode production"
   },
-  "browserslist": [">0.25%, not dead"],
+  "browserslist": [
+    ">0.25%, not dead"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fsoc-xvi/sieng-english-learning.git"
@@ -47,5 +49,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
 }

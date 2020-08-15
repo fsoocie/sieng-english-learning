@@ -1,0 +1,346 @@
+@import "variables";
+
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 80%;
+  margin: 5px auto 15px auto;
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      @include colorBlack(.8);
+      font-size: 2.4em;
+      margin-left: 8px;
+    }
+    & > #return-to-modules-SVG {
+      cursor: pointer;
+      height: 40px;
+      width: 40px;
+      svg {
+        transition-duration: 0.15s;
+        &:hover {
+          fill: $turquoise-dark;
+        }
+      }
+    }
+  }
+  &__delete {
+    transition-duration: 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(244,67,54, .85);
+    border-radius: 6px;
+    height: 38px;
+    width: 12%;
+    cursor: pointer;
+    span {
+      font-size: 0.9em;
+      margin-left: 5px;
+      font-weight: 300;
+      color: white;
+    }
+    &:hover {
+      background-color: $red;
+    }
+  }
+}
+.content-game {
+  height: 75vh;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .themes-game {
+    @include colorBlack(.75);
+    height: 80%;
+    width: 31vw;
+    font-size: 1.8em;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__block {
+      margin-bottom: 30%;
+    }
+    &__cards {
+      padding: 4px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    &__learning {
+      padding: 4px;
+    }
+    &__span {
+      cursor: pointer;
+      &:hover {
+        @include colorBlack(0.9);
+      }
+    }
+    &_active {
+      @include colorBlack(.9);
+      border-bottom: 3px $yellow solid;
+      font-weight: 400;
+    }
+  }
+  .game {
+    height: 80%;
+    &__block {
+      height: 50vh;
+      width: 31vw;
+      box-shadow: 1px 4px 8px rgba(32, 32, 2, .25);
+      background-color: $white;
+      border-radius: 2px;
+    }
+    &__card {
+      @include colorBlack(.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3em;
+      font-family: Raleway, sans-serif;
+      letter-spacing: 0.03em;
+    }
+    &__controls {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px auto 0 auto;
+      width: 78%;
+      #previous-card-SVG, #next-card-SVG {
+        cursor: pointer;
+        height: 35px;
+        width: 35px;
+        svg {
+          transition-duration: 0.2s;
+          &:hover {
+            fill: $black;
+            fill-opacity: 0.8;
+          }
+        }
+      }
+    }
+    .learning-word {
+      padding: 16px 16px 40px 16px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &__skip {
+        display: flex;
+        justify-content: flex-end;
+        &-span {
+          @include colorBlack(.3);
+          transition-duration: 0.15s;
+          font-size: 1em;
+          cursor: pointer;
+          &:hover {
+            @include colorBlack(.7);
+          }
+        }
+      }
+      &__word {
+        &-span {
+          @include colorBlack(.75);
+          display: flex;
+          justify-content: center;
+          font-size: 2.6em;
+          font-family: Raleway, sans-serif;
+          letter-spacing: 0.035em;
+        }
+      }
+    }
+    &__answer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      &-input {
+        width: 50%;
+        height: 40px;
+        border: 1.6px $turquoise solid;
+        text-align: center;
+        font-size: 1.15em;
+        letter-spacing: 0.015em;
+        padding: 0;
+        &:focus {
+          border: 1.6px $turquoise-dark solid;
+          outline: none;
+        }
+      }
+      &-button {
+        transition-duration: 0.15s;
+        cursor: pointer;
+        width: 30%;
+        height: 41.6px;
+        background-color: $turquoise;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border:none;
+        font-size: 1.3em;
+        color: $white;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          background-color: $turquoise-dark;
+        }
+      }
+    }
+    .result {
+      &__column {
+        height: 100%;
+        box-sizing: border-box;
+        padding: 60px 50px 10px 60px;
+        display: flex;
+        flex-direction: column;
+      }
+      &__body {
+        flex: 1 1 70%;
+        .right {
+          margin-bottom: 40px;
+          &__progress {
+            background-color: $green-opacity;
+            width: 100%;
+            height: 40px;
+            position: relative;
+            &::before {
+              content: '';
+              background-color: $green;
+              height: 100%;
+              width:75%;
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+          }
+          &__description {
+            display: flex;
+            justify-content: space-between;
+          }
+          &__count {
+            font-weight: bold;
+          }
+        }
+        .wrong {
+          &__progress {
+            background-color: $red2-opacity;
+            width: 100%;
+            height: 40px;
+            position: relative;
+            &::before {
+              content: '';
+              background-color: $red2;
+              height: 100%;
+              width:25%;
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+          }
+          &__description {
+            display: flex;
+            justify-content: space-between;
+          }
+          &__count {
+            font-weight: bold;
+          }
+        }
+      }
+      &__restart {
+        flex: 1 1 30%;
+        border-top: 2px rgba(32,32,2, .05) solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-button {
+          transition-duration: 0.2s;
+          cursor: pointer;
+          background-color: $turquoise;
+          color: $white;
+          border: none;
+          font-size: 1.3em;
+          width: 60%;
+          height: 55%;
+          &:focus {
+            outline: none;
+          }
+          &:hover {
+            background-color: $turquoise-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.terms {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 0 auto;
+  &__header {
+    @include colorBlack(.8);
+    letter-spacing: 0.01em;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    span {
+      border-bottom: 3px rgba(32,32,2, .8) solid;
+      padding-bottom: 4px;
+    }
+  }
+  &__content {
+    .term {
+      width: 30vw;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      background-color: $white;
+      margin-bottom: 18px;
+      font-family: Raleway, sans-serif;
+      letter-spacing: 0.02em;
+      box-shadow: 1px 1px 4px rgba(244,67,54, .6);
+      &__english-word {
+        border-right: 1.5px rgba(32,32,2, .25) solid;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+      }
+      &__russian-word {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+.edit {
+  transition-duration: 0.1s;
+  border-radius: 2px;
+  border:none;
+  margin: 40px auto;
+  height: 56px;
+  width: 28%;
+  color: $white;
+  background-color: $turquoise;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  letter-spacing: 0.015em;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: $turquoise-dark;
+  }
+}

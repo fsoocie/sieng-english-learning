@@ -1,1 +1,12 @@
+@import "~normalize.css";
 @import "variables";
+@import "header";
+@import "dictionary-dashboard";
+@import "dictionary-main";
+@import "dictionary-editor";
+
+html {
+  @include RobotoRegular();
+  color: $black;
+  background-color: rgb(245, 246, 250);
+}

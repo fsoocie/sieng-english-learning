@@ -1,0 +1,203 @@
+@import "variables";
+
+.edit-header {
+  width: 100%;
+  background-color: $white;
+  /*box-shadow: 0 4px 4px rgba(32,32,2, .2);*/
+  &__container {
+    width: 80%;
+    height: 64px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__return {
+    &-link {
+      text-decoration: none;
+      @include colorBlack(.8);
+    }
+    &-button {
+      transition-duration: 0.15s;
+      background-color: $white;
+      border: none;
+      cursor: pointer;
+      & > #back-SVG {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+      }
+      & > span {
+        font-size: 1.1em;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        color: $turquoise;
+      }
+    }
+  }
+  &__done {
+    &-button {
+      transition-duration: 0.2s;
+      width: 88px;
+      height: 30px;
+      background-color: $turquoise;
+      border: none;
+      color: $white;
+      font-size: 1.1em;
+      border-radius: 4px;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background-color: $turquoise-dark;
+      }
+    }
+  }
+}
+
+.dictionary-editor-container {
+  width: 80%;
+  margin: 48px auto 0 auto;
+  .module-title {
+    &__input {
+      transition-duration: 0.1s;
+      @include colorBlack(.9);
+      height: 34px;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 2px rgba(32,32,2, .6) solid;
+      width: 320px;
+      text-align: center;
+      padding: 4px 10px;
+      background-color: inherit;
+      font-size: 1.2em;
+      letter-spacing: 0.01em;
+      &:focus{
+        outline: none;
+        border-bottom: 3px $orange solid;
+        padding-bottom: 3px;
+      }
+    }
+    &__describe {
+      @include colorBlack(.35);
+      margin-top: 2px;
+      margin-left: 2px;
+      font-size: 0.85em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.editor {
+  margin-top: 68px;
+  .add-word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__button {
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 16px 64px;
+      #add-word-SVG {
+        width: 36px;
+        height: 36px;
+        fill: $orange;
+      }
+      span {
+        transition-duration: 0.175s;
+        @include colorBlack(0.7);
+        font-size: 1.4em;
+        margin-left: 18px;
+        font-weight: bold;
+      }
+      &:hover {
+        & > span {
+          color: $orange;
+        }
+        svg {
+          fill: $orange;
+        }
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .blanks {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .blank {
+      width: 56vw;
+      height: 96px;
+      display: flex;
+      flex-direction: column;
+      background-color: $white;
+      margin-bottom: 28px;
+      border-radius: 8px;
+      &__header {
+        border-bottom: 2.5px rgb(248, 249, 253) solid;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        .delete-word-SVG {
+          cursor: pointer;
+          margin-right: 4px;
+          svg {
+            transition-duration: 0.2s;
+            width: 22px;
+            height: 22px;
+            fill: rgba(255,43,42, .7);
+            &:hover {
+              fill: rgba(255,43,42, .9);
+            }
+          }
+        }
+      }
+      &__number {
+        @include colorBlack(.6);
+        font-family: Raleway, sans-serif;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 4px 0 4px 16px;
+        user-select: none;
+      }
+      &__main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0 auto 6px auto;
+        .blank__input {
+          transition-duration: 0.1s;
+          @include colorBlack(.8);
+          box-sizing: border-box;
+          border: none;
+          border-bottom: 1.5px rgba(32,32,2,.3) solid;
+          text-align: center;
+          width: 17vw;
+          height: 34px;
+          font-size: 1.3em;
+          &:focus {
+            @include colorBlack(.95);
+            outline: none;
+            border-bottom: 3.5px $orange solid;
+            padding-bottom: 3.5px;
+          }
+        }
+      }
+    }
+  }
+}
