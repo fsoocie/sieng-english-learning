@@ -24,6 +24,7 @@
         }
       }
       &__module {
+        transition-duration: 0.2s;
         height: 48px;
         display: flex;
         align-items: center;
@@ -33,6 +34,9 @@
         border-radius: 2px;
         box-shadow: 1px 2px 4px rgba(32, 32, 2, .2);
         cursor: pointer;
+        &:hover {
+          box-shadow: 1px 2px 4px rgba(32, 32, 2, .4);
+        }
       }
       &__count-words {
         position: absolute;
@@ -48,6 +52,7 @@
     }
   }
   .create-module {
+    transition-duration: 0.2s;
     width: 175px;
     height: 150px;
     background-color: $turquoise;
@@ -65,6 +70,9 @@
       letter-spacing: 0.08em;
       display: flex;
       justify-content: center;
+    }
+    &:hover {
+      background-color: $turquoise-dark;
     }
   }
 }

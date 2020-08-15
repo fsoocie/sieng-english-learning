@@ -16,17 +16,31 @@
     &-link {
       text-decoration: none;
       @include colorBlack(.8);
-      & > img {
+    }
+    &-button {
+      transition-duration: 0.15s;
+      background-color: $white;
+      border: none;
+      cursor: pointer;
+      & > #back-SVG {
+        display: inline-block;
         width: 14px;
         height: 14px;
       }
       & > span {
         font-size: 1.1em;
       }
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        color: $turquoise;
+      }
     }
   }
   &__done {
     &-button {
+      transition-duration: 0.2s;
       width: 88px;
       height: 30px;
       background-color: $turquoise;
@@ -34,6 +48,13 @@
       color: $white;
       font-size: 1.1em;
       border-radius: 4px;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background-color: $turquoise-dark;
+      }
     }
   }
 }
@@ -43,6 +64,7 @@
   margin: 48px auto 0 auto;
   .module-title {
     &__input {
+      transition-duration: 0.1s;
       @include colorBlack(.9);
       height: 34px;
       box-sizing: border-box;
@@ -57,6 +79,7 @@
       &:focus{
         outline: none;
         border-bottom: 3px $orange solid;
+        padding-bottom: 3px;
       }
     }
     &__describe {
@@ -77,29 +100,35 @@
     justify-content: center;
     align-items: center;
     &__button {
-      background-color: inherit;
-      border: none;
+      background-color: $white;
       display: flex;
       align-items: center;
       cursor: pointer;
+      border-radius: 8px;
+      padding: 16px 64px;
+      #add-word-SVG {
+        width: 36px;
+        height: 36px;
+        fill: $orange;
+      }
+      span {
+        transition-duration: 0.175s;
+        @include colorBlack(0.7);
+        font-size: 1.4em;
+        margin-left: 18px;
+        font-weight: bold;
+      }
       &:hover {
         & > span {
-          @include colorBlack(.9)
+          color: $orange;
+        }
+        svg {
+          fill: $orange;
         }
       }
       &:focus {
         outline: none;
       }
-    }
-    img {
-      width: 36px;
-      height: 36px;
-    }
-    span {
-      @include colorBlack(.7);
-      font-size: 1.4em;
-      font-weight: bold;
-      margin-left: 12px;
     }
   }
   .blanks {
@@ -110,7 +139,7 @@
     flex-direction: column;
     .blank {
       width: 56vw;
-      height: 92px;
+      height: 96px;
       display: flex;
       flex-direction: column;
       background-color: $white;
@@ -122,22 +151,17 @@
         justify-content: space-between;
         align-items: center;
         height: 60px;
-        button {
-          background-color: inherit;
-          border: none;
-          margin-right: 8px;
+        .delete-word-SVG {
           cursor: pointer;
+          margin-right: 4px;
           svg {
+            transition-duration: 0.2s;
             width: 22px;
             height: 22px;
             fill: rgba(255,43,42, .7);
             &:hover {
               fill: rgba(255,43,42, .9);
             }
-          }
-          &:focus {
-            border: none;
-            outline: none;
           }
         }
       }
@@ -155,8 +179,9 @@
         align-items: center;
         height: 100%;
         width: 80%;
-        margin: 0 auto;
+        margin: 0 auto 6px auto;
         .blank__input {
+          transition-duration: 0.1s;
           @include colorBlack(.8);
           box-sizing: border-box;
           border: none;
@@ -169,6 +194,7 @@
             @include colorBlack(.95);
             outline: none;
             border-bottom: 3.5px $orange solid;
+            padding-bottom: 3.5px;
           }
         }
       }

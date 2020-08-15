@@ -12,32 +12,46 @@
 <div class="app">
   <header class="header">
     <div class="header__container">
-      <div class="header__title">SIENG</div>
+      <div class="header__title">
+        <span>SIENG</span>
+      </div>
       <nav class="sections">
         <div class="sections__dictionary sections__item sections__item_active">
-          <img src="../svg/dictionary.svg" alt="dictionary">
-          <span class="sections__name">Словарь</span>
+          <div class="item__container">
+            <div class="item__content">
+              <div id="dictionary-book-SVG" class="item-svg"></div>
+              <span class="item__name">Словарь</span>
+            </div>
+          </div>
         </div>
-        <div class="sections__separator">|</div>
         <div class="sections__films sections__item">
-          <img src="../svg/films.svg" alt="films">
-          <span class="sections__name">Фильмы и сериалы</span>
+          <div class="item__container">
+            <div class="item__content">
+              <div id="films-SVG" class="item-svg"></div>
+              <span class="item__name">Фильмы и сериалы</span>
+            </div>
+          </div>
         </div>
-        <div class="sections__separator">|</div>
         <div class="header__books sections__item">
-          <img src="../svg/books.svg" alt="books">
-          <span class="sections__name">Книги</span>
+          <div class="item__container">
+            <div class="item__content">
+              <div id="books-SVG" class="item-svg"></div>
+              <span class="item__name">Книги</span>
+            </div>
+          </div>
         </div>
       </nav>
       <div class="header__user">
-        <span>fsoocie</span>
-        <img src="../svg/account_options.svg" alt="options">
+        <div class="header__user-container">
+          <span class="header__acc-name">fsoocie</span>
+          <div id="account-options-SVG"></div>
+        </div>
       </div>
     </div>
   </header>
 
-  <div class="section-modules">
-    <div class="modules-groups">
+  <main class="section-modules">
+    <section class="modules-groups">
       <div class="group">
         <div class="group__date">
           <span class="group__number">30 Сентября</span>
@@ -51,13 +65,13 @@
           <span class="group__module-title">Лето</span>
         </div>
       </div>
-    </div>
-    <div class="create-module">
+    </section>
+    <section class="create-module">
       <div class="create-module__plus">+</div>
       <div class="create-module__text">Создать новый</div>
-    </div>
+    </section>
     <div></div>
-  </div>
+  </main>
 </div>
 </body>
 </html>
