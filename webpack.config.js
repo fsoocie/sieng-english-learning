@@ -8,6 +8,13 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
 const filename = ext => isProd? `bundle.[contenthash].${ext}`: `bundle.${ext}`
+const jsLoaders = () => {
+  const loaders = ['babel-loader']
+  if (isDev) {
+    loaders.push('eslint-loader')
+  }
+  return loaders
+}
 
 module.exports = {
   mode: 'development',
@@ -61,14 +68,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        ]
+        use: jsLoaders()
       },
       {
         test: /\.s[ac]ss$/,

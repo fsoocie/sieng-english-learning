@@ -70,35 +70,36 @@ const deleteWordSVG = `
     <path d="m397.648438 120.0625-10.148438-30.421875c-2.675781-8.019531-10.183594-13.429687-18.640625-13.429687h-339.410156c-8.453125 0-15.964844 5.410156-18.636719 13.429687l-10.148438 30.421875c-1.957031 5.867188.589844 11.851562 5.34375 14.835938 1.9375 1.214843 4.230469 1.945312 6.75 1.945312h372.796876c2.519531 0 4.816406-.730469 6.75-1.949219 4.753906-2.984375 7.300781-8.96875 5.34375-14.832031zm0 0"/>
   </svg>
 `
+document.addEventListener('DOMContentLoaded', () => {
+  const dictionaryBookElem = document.getElementById('dictionary-book-SVG')
+  if (dictionaryBookElem) dictionaryBookElem.innerHTML = dictionaryBookSVG
 
-const dictionaryBookElem = document.getElementById('dictionary-book-SVG')
-if (dictionaryBookElem) dictionaryBookElem.innerHTML = dictionaryBookSVG
+  const filmsElem = document.getElementById('films-SVG')
+  if (filmsElem) filmsElem.innerHTML = filmsSVG
 
-const filmsElem = document.getElementById('films-SVG')
-if (filmsElem) filmsElem.innerHTML = filmsSVG
+  const booksElem = document.getElementById('books-SVG')
+  if (booksElem) booksElem.innerHTML = booksSVG
 
-const booksElem = document.getElementById('books-SVG')
-if (booksElem) booksElem.innerHTML = booksSVG
+  const accountOptionsElem = document.getElementById('account-options-SVG')
+  if (accountOptionsElem) accountOptionsElem.innerHTML = accountOptionsSVG
 
-const accountOptionsElem = document.getElementById('account-options-SVG')
-if (accountOptionsElem) accountOptionsElem.innerHTML = accountOptionsSVG
+  const nextCardElem = document.getElementById('next-card-SVG')
+  if (nextCardElem) nextCardElem.innerHTML = nextCardSVG
 
-const nextCardElem = document.getElementById('next-card-SVG')
-if (nextCardElem) nextCardElem.innerHTML = nextCardSVG
+  const previousCardElem = document.getElementById('previous-card-SVG')
+  if (previousCardElem) previousCardElem.innerHTML = previousCardSVG
 
-const previousCardElem = document.getElementById('previous-card-SVG')
-if (previousCardElem) previousCardElem.innerHTML = previousCardSVG
+  const returnToModulesElem = document.getElementById('return-to-modules-SVG')
+  if (returnToModulesElem) returnToModulesElem.innerHTML = returnToModulesSVG
 
-const returnToModulesElem = document.getElementById('return-to-modules-SVG')
-if (returnToModulesElem) returnToModulesElem.innerHTML = returnToModulesSVG
+  const backElem = document.getElementById('back-SVG')
+  if(backElem) backElem.innerHTML = backSVG
 
-const backElem = document.getElementById('back-SVG')
-if(backElem) backElem.innerHTML = backSVG
+  const addWordElem = document.getElementById('add-word-SVG')
+  if (addWordElem) addWordElem.innerHTML = addWordSVG
 
-const addWordElem = document.getElementById('add-word-SVG')
-if (addWordElem) addWordElem.innerHTML = addWordSVG
-
-const deleteWordElems = document.querySelectorAll('.delete-word-SVG')
-if (deleteWordElems) {
-  deleteWordElems.forEach(el => el.innerHTML = deleteWordSVG)
-}
+  const deleteWordElems = document.querySelectorAll('.delete-word-SVG')
+  if (deleteWordElems) {
+    deleteWordElems.forEach(el => el.innerHTML = deleteWordSVG)
+  }
+})
