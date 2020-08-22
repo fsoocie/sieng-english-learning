@@ -1,16 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title>Sieng</title>
-</head>
-<body>
-<div id="app">
-  <header class="header">
+import {DictionaryComponent} from '@core/DictionaryComponent';
+
+export class Header extends DictionaryComponent {
+  static tag = 'header'
+  static className = 'header'
+  constructor($root, options) {
+    super($root, {
+      name: 'Header',
+      listeners: ['click'],
+      ...options
+    })
+    this.$root = $root
+  }
+  toHTML() {
+    return `
     <div class="header__container">
       <div class="header__title">
         <span>SIENG</span>
@@ -47,31 +49,9 @@
           <div id="account-options-SVG"></div>
         </div>
       </div>
-    </div>
-  </header>
-
-  <main class="section-modules">
-    <section class="modules-groups">
-      <div class="group">
-        <div class="group__date">
-          <span class="group__number">30 Сентября</span>
-        </div>
-        <div class="group__module">
-          <span class="group__count-words">4 слова</span>
-          <span class="group__module-title">Программирование</span>
-        </div>
-        <div class="group__module">
-          <span class="group__count-words">7 слов</span>
-          <span class="group__module-title">Лето</span>
-        </div>
-      </div>
-    </section>
-    <section class="create-module">
-      <div class="create-module__plus">+</div>
-      <div class="create-module__text">Создать новый</div>
-    </section>
-    <div></div>
-  </main>
-</div>
-</body>
-</html>
+    </div>`
+  }
+  onClick(event) {
+    console.log(event.target)
+  }
+}

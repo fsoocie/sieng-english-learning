@@ -1,4 +1,5 @@
 module.exports = {
+  'parser': 'babel-eslint',
   'env': {
     'browser': true,
     'node': true,
@@ -16,6 +17,7 @@ module.exports = {
     'comma-dangle': 'off',
     'linebreak-style': 'off',
     'arrow-parens': 'off',
-    'require-jsdoc': 'off'
+    'require-jsdoc': 'off',
+    'operator-linebreak': 'off',
   },
 };
