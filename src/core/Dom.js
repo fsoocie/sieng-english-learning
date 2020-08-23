@@ -34,6 +34,17 @@ export class Dom {
     this.$el.removeEventListener(eventType, callback)
     return this
   }
+  addClass(className) {
+    this.$el.classList.add(className)
+    return this
+  }
+  removeClass(className) {
+    this.$el.classList.remove(className)
+    return this
+  }
+  get data() {
+    return this.$el.dataset
+  }
 }
 
 export function $(selector) {
