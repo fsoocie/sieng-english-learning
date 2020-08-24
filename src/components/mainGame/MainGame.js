@@ -1,8 +1,10 @@
 import {DictionaryComponent} from '@core/DictionaryComponent'
-import {createCards} from '@/components/mainGame/game.template'
+import {Game} from '@/components/mainGame/Game';
 import {$} from '@core/Dom';
-import {changeGame} from '@/components/mainGame/changeGame';
-import {isExistTypeGame} from '@/components/mainGame/game.functions';
+import {
+  isExistTypeGame, isCard,
+  isNextCard, isPrevCard, isAnswerButton
+} from '@/components/mainGame/game.functions';
 
 export class MainGame extends DictionaryComponent {
   static className = 'content-game'
@@ -32,15 +34,43 @@ export class MainGame extends DictionaryComponent {
       </div>
     </div>
     <div class="game" data-id="game">
-      ${createCards('implement')}
     </div>
     `
+  }
+
+  init() {
+    super.init()
+    this.game = new Game('[data-id=game]', {
+      state: [
+        {russian: 'реализовать', english: 'implement'},
+        {russian: 'уколоть', english: 'prick'},
+        {russian: 'исполнитель', english: 'executor'}
+      ]
+    })
   }
 
   onClick(event) {
     if (isExistTypeGame(event)) {
       const typegame = $(event.target).data['typegame']
-      changeGame(typegame)
+      this.game.changeGameType(typegame)
+    }
+    if (isCard(event)) {
+      if (!this.game.animation) {
+        this.game.translateCard()
+      }
+    }
+    if (isNextCard(event)) {
+      if (!this.game.animation) {
+        this.game.nextCard()
+      }
+    }
+    if (isPrevCard(event)) {
+      if (!this.game.animation) {
+        this.game.prevCard()
+      }
+    }
+    if (isAnswerButton(event)) {
+      this.game.sendAnswerWord()
     }
   }
 }

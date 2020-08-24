@@ -90,6 +90,7 @@
   }
   .game {
     height: 80%;
+    perspective: 1500px;
     &__block {
       height: 50vh;
       width: 31vw;
@@ -99,12 +100,21 @@
     }
     &__card {
       @include colorBlack(.75);
+      cursor: pointer;
+      transition-duration: 0.3s;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 3em;
       font-family: Raleway, sans-serif;
       letter-spacing: 0.03em;
+    }
+    &__card-translated {
+      transform: rotateX(180deg);
+      box-shadow: 1px -4px 8px rgba(32, 32, 2, .25);
+      & > span {
+        transform: rotateX(180deg);
+      }
     }
     &__controls {
       display: flex;
@@ -343,4 +353,22 @@
   &:hover {
     background-color: $turquoise-dark;
   }
+}
+
+@keyframes card-word-opacity {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes next-card {
+  0% {opacity: 1}
+  49% {opacity: 0; transform: translateX(40px)}
+  50% {opacity: 0; transform: translateX(-40px)}
+  100% {opacity: 1}
+}
+@keyframes prev-card {
+  0% {opacity: 1}
+  49% {opacity: 0; transform: translateX(-40px)}
+  50% {opacity: 0; transform: translateX(40px)}
+  100% {opacity: 1}
 }
