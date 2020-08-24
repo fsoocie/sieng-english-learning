@@ -2,11 +2,13 @@ import {nextCardSVG, previousCardSVG} from '@/inlineSVG';
 
 export function createCards() {
   return `
-    <div class="game__card game__block">prick</div>
-      <div class="game__controls">
-        <div id="previous-card-SVG">${previousCardSVG}</div>
-        <div id="next-card-SVG">${nextCardSVG}</div>
-      </div>
+    <div class="game__card game__block" data-id="game-card">
+        <span data-id="word">love</span>
+    </div>
+    <div class="game__controls">
+      <div id="previous-card-SVG" data-id="prev-card">${previousCardSVG}</div>
+      <div id="next-card-SVG" data-id="next-card">${nextCardSVG}</div>
+    </div>
   `
 }
 
@@ -17,12 +19,12 @@ export function createLearningWords() {
       <span class="learning-word__skip-span">Пропустить</span>
     </div>
     <div class="learning-word__word">
-      <span class="learning-word__word-span">handler</span>
+      <span class="learning-word__word-span" data-id="word">handler</span>
     </div>
     <div class="game__answer">
-        <input type="text" class="game__answer-input"
+        <input data-id="answer-input" type="text" class="game__answer-input"
         placeholder="Введите слово...">
-      <button class="game__answer-button">Ответ</button>
+      <button class="game__answer-button" data-id="answer-button">Ответ</button>
     </div>
   </div>
   `

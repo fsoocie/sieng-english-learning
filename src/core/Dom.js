@@ -11,6 +11,20 @@ export class Dom {
     }
     return this.$el.innerHTML
   }
+  text(value) {
+    if (value) {
+      this.$el.innerText = value
+      return this
+    }
+    return this.$el.innerText
+  }
+  value(data) {
+    if (data) {
+      this.$el.value = data
+      return this
+    }
+    return this.$el.value
+  }
   append(node) {
     if (node instanceof Dom) {
       node = node.$el
@@ -34,12 +48,19 @@ export class Dom {
     this.$el.removeEventListener(eventType, callback)
     return this
   }
+  style(styles) {
+    this.$el.style.animation = styles
+  }
   addClass(className) {
     this.$el.classList.add(className)
     return this
   }
   removeClass(className) {
     this.$el.classList.remove(className)
+    return this
+  }
+  toggleClass(className) {
+    this.$el.classList.toggle(className)
     return this
   }
   get data() {
