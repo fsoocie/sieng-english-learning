@@ -3,7 +3,8 @@ import {Game} from '@/components/mainGame/Game';
 import {$} from '@core/Dom';
 import {
   isExistTypeGame, isCard,
-  isNextCard, isPrevCard, isAnswerButton
+  isNextCard, isPrevCard, isAnswerButton,
+  isNoActiveTypeGame, isSkipButton
 } from '@/components/mainGame/game.functions';
 
 export class MainGame extends DictionaryComponent {
@@ -50,27 +51,41 @@ export class MainGame extends DictionaryComponent {
   }
 
   onClick(event) {
-    if (isExistTypeGame(event)) {
+    if (isExistTypeGame(event) && isNoActiveTypeGame(event)) {
       const typegame = $(event.target).data['typegame']
       this.game.changeGameType(typegame)
     }
     if (isCard(event)) {
-      if (!this.game.animation) {
-        this.game.translateCard()
-      }
+      this.game.translateCard()
     }
     if (isNextCard(event)) {
-      if (!this.game.animation) {
-        this.game.nextCard()
-      }
+      this.game.nextCard()
     }
     if (isPrevCard(event)) {
-      if (!this.game.animation) {
-        this.game.prevCard()
-      }
+      this.game.prevCard()
     }
     if (isAnswerButton(event)) {
       this.game.sendAnswerWord()
+    }
+    if (isSkipButton(event)) {
+      this.game.skipWord()
+    }
+  }
+
+  onKeydown(event) {
+    const key = event.key.toLowerCase()
+    const $card = this.game.$card.$el
+    const $skip = this.game.$skip.$el
+    if (key === 'enter' && event.target.dataset.id === 'answer-input') {
+      this.game.sendAnswerWord()
+    } else if (key === 'shift' && $skip) {
+      this.game.skipWord()
+    } else if (key === 'enter' && $card) {
+      this.game.translateCard()
+    } else if ((key === 'arrowleft' || key ==='a') && $card) {
+      this.game.prevCard()
+    } else if ((key === 'arrowright'|| key ==='d') && $card) {
+      this.game.nextCard()
     }
   }
 }

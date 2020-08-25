@@ -32,3 +32,12 @@ export function isPrevCard(event) {
 export function isAnswerButton(event) {
   return getData(event).id === 'answer-button'
 }
+
+export function isNoActiveTypeGame(event) {
+  return !event.target.parentNode.classList.contains('themes-game_active')
+    && !event.target.classList.contains('themes-game_active')
+}
+
+export function isSkipButton(event) {
+  return event.target.dataset.id === 'skip-word'
+}

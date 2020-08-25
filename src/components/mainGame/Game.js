@@ -4,66 +4,101 @@ import {$toGameType} from '@core/utils';
 
 export class Game {
   constructor(selector, options) {
-    this.$root = selector instanceof Dom? selector : $(selector)
+    this.$root = selector instanceof Dom ? selector : $(selector)
     this.state = options.state
     this.type = options.type || 'cards'
     this.$gameTypes = Object.keys(gameTypes).map($toGameType)
+    this.animation = false
     this.init()
   }
 
   init() {
-    this.changeGameType(this.type)
+    this.selectActiveTheme(this.type)
+    this.$root.html(gameTypes[this.type]())
+    this.resetElems()
   }
-  destroy() {}
+
   changeGameType(typegame) {
+    if (!this.animation) {
+      this.selectActiveTheme(typegame)
+      this.$root.animate('change-game-type', 600)
+      this.setAnimation(600)
+      setTimeout(() => {
+        this.$root.html(gameTypes[typegame]())
+        this.resetElems()
+      }, 290)
+    }
+  }
+
+  selectActiveTheme(typegame) {
     this.$gameTypes.forEach($type => {
       if ($type.data['typegame'] === typegame) {
         $type.addClass('themes-game_active')
-        this.$root.html(gameTypes[typegame]())
       } else $type.removeClass('themes-game_active')
     })
-    this.$word = $('[data-id=word]')
-    this.$input = $('[data-id=answer-input]')
-    this.$card = $(document.querySelector('[data-id=game-card]'))
   }
+
   translateCard() {
-    this.$card.toggleClass('game__card-translated')
-    this.$word.style('card-word-opacity 1s')
-    this.$word.text(this.state[0].russian)
-    this.animation = true
-    setTimeout(() => {
-      this.animation = false
-      this.$word.style('')
-    }, 1000)
-  }
-  nextCard() {
-    this.$card.removeClass('game__card-translated').style('next-card 0.6s')
-    this.animation = true
-    setTimeout(() => {
-      this.$word.text(this.state[2].english)
-    }, 290)
-    setTimeout(() => {
-      this.$card.style('')
-      this.animation = false
-    }, 600)
-  }
-  prevCard() {
-    this.$card.style('prev-card 0.6s')
-    this.animation = true
-    setTimeout(() => {
-      this.$word.text(this.state[0].english)
-    }, 290)
-    setTimeout(() => {
-      this.$card.style('')
-      this.animation = false
-    }, 600)
-  }
-  sendAnswerWord() {
-    if (this.$input.value() === this.$word.text()) {
-      this.nextLearningWord()
+    if (!this.animation) {
+      this.$card.toggleClass('game__card-translated')
+      this.$word.animate('card-word-opacity', 1000)
+      this.$word.text(this.state[0].russian)
+      this.setAnimation(1000)
     }
   }
-  nextLearningWord() {
-    this.$word.text(this.state[2].english)
+
+  changeCard(animationName, animationDuration, value) {
+    if (!this.animation) {
+      this.$card.removeClass('game__card-translated')
+      this.$card.animate(animationName, animationDuration)
+      this.setAnimation(animationDuration)
+      setTimeout(() => {
+        this.$word.text(value)
+      }, animationDuration / 2)
+    }
+  }
+
+  nextCard() {
+    this.changeCard('next-card', 600, this.state[2].english)
+  }
+
+  prevCard() {
+    this.changeCard('prev-card', 600, this.state[0].english)
+  }
+
+  sendAnswerWord() {
+    if (this.$input.value() === this.$word.text()) {
+      this.changeLearningWord('right-input-word', 1000, this.state[2].english)
+    } else if (this.$input.value() !== this.$word.text()) {
+      this.$input.animate('wrong-input-word', 850)
+    }
+  }
+
+  skipWord() {
+    this.$word.text('right-word')
+    this.changeLearningWord('skip-word', 3000, 'skipped')
+  }
+
+  changeLearningWord(animate, duration, value) {
+    this.$word.animate(animate, duration)
+    this.$input.attr('disabled', true)
+    setTimeout(() => {
+      this.$word.text(value)
+      this.$input.value('').removeAttr('disabled').focus()
+    }, duration)
+  }
+
+  setAnimation(duration) {
+    this.animation = true
+    setTimeout(() => {
+      this.animation = false
+    }, duration)
+  }
+
+  resetElems() {
+    this.$word = $('[data-id=word]')
+    this.$input = $('[data-id=answer-input]')
+    this.$card = $('[data-id=game-card]')
+    this.$skip = $('[data-id=skip-word]')
   }
 }
