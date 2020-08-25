@@ -15,15 +15,17 @@ export function createCards() {
 export function createLearningWords() {
   return `
   <div class="learning-word game__block">
-    <div class="learning-word__skip">
-      <span class="learning-word__skip-span">Пропустить</span>
+    <div class="learning-word__skip" data-id="skip-word">
+      <span class="learning-word__skip-span"
+       data-id="skip-word">Пропустить</span>
     </div>
     <div class="learning-word__word">
       <span class="learning-word__word-span" data-id="word">handler</span>
     </div>
     <div class="game__answer">
         <input data-id="answer-input" type="text" class="game__answer-input"
-        placeholder="Введите слово...">
+        placeholder="Введите слово..." onfocus="this.placeholder=''"
+         onblur="this.placeholder='Введите слово...'">
       <button class="game__answer-button" data-id="answer-button">Ответ</button>
     </div>
   </div>

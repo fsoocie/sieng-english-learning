@@ -19,7 +19,7 @@ export class Dom {
     return this.$el.innerText
   }
   value(data) {
-    if (data) {
+    if (data || data === '') {
       this.$el.value = data
       return this
     }
@@ -48,8 +48,16 @@ export class Dom {
     this.$el.removeEventListener(eventType, callback)
     return this
   }
-  style(styles) {
-    this.$el.style.animation = styles
+  css(styles= {}) {
+    Object.keys(styles).forEach(key => this.$el.style[key] = styles[key])
+    return this
+  }
+  animate(name, duration) {
+    this.$el.style.animation = `${name} ${duration}ms`
+    setTimeout(() => {
+      this.$el.style.animation = ''
+    }, duration)
+    return this
   }
   addClass(className) {
     this.$el.classList.add(className)
@@ -61,6 +69,21 @@ export class Dom {
   }
   toggleClass(className) {
     this.$el.classList.toggle(className)
+    return this
+  }
+  attr(key, value) {
+    if (value) {
+      this.$el.setAttribute(key, value)
+      return this
+    }
+    return this.$el.getAttribute(key)
+  }
+  removeAttr(key) {
+    this.$el.removeAttribute(key)
+    return this
+  }
+  focus() {
+    this.$el.focus()
     return this
   }
   get data() {

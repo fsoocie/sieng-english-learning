@@ -22,5 +22,16 @@ export class Main {
     this.components.forEach(component => {
       component.init()
     })
+    this.mainGame = this.components.find((c) => c.name === 'MainGame')
+    this.keydownHandler = (e) => {
+      this.mainGame.onKeydown(e)
+    }
+    document.addEventListener('keydown', this.keydownHandler)
+  }
+  destroy() {
+    this.components.forEach(component => {
+      component.destroy()
+    })
+    document.removeEventListener('keydown', this.keydownHandler)
   }
 }

@@ -58,6 +58,7 @@
   align-items: center;
   .themes-game {
     @include colorBlack(.75);
+    transition-duration: 0.1s;
     height: 80%;
     width: 31vw;
     font-size: 1.8em;
@@ -83,6 +84,7 @@
       }
     }
     &_active {
+      transition-duration: 0.012s;
       @include colorBlack(.9);
       border-bottom: 3px $yellow solid;
       font-weight: 400;
@@ -110,8 +112,8 @@
       letter-spacing: 0.03em;
     }
     &__card-translated {
-      transform: rotateX(180deg);
       box-shadow: 1px -4px 8px rgba(32, 32, 2, .25);
+      transform: rotateX(180deg);
       & > span {
         transform: rotateX(180deg);
       }
@@ -361,14 +363,36 @@
 }
 
 @keyframes next-card {
-  0% {opacity: 1}
+  0% {opacity: 1; box-shadow:inherit}
   49% {opacity: 0; transform: translateX(40px)}
   50% {opacity: 0; transform: translateX(-40px)}
   100% {opacity: 1}
 }
 @keyframes prev-card {
-  0% {opacity: 1}
+  0% {opacity: 1; box-shadow:inherit}
   49% {opacity: 0; transform: translateX(-40px)}
   50% {opacity: 0; transform: translateX(40px)}
   100% {opacity: 1}
+}
+
+@keyframes change-game-type {
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes right-input-word {
+  0% {color: green}
+  99% {color: white}
+  100% {color: black}
+}
+
+@keyframes skip-word {
+  0% {color: $red}
+  50% {color: $red}
+  99% {color: white}
+}
+
+@keyframes wrong-input-word {
+  0% {color: $red}
+  100% {color: $black}
 }
