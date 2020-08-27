@@ -3,10 +3,13 @@ import {$} from '@core/Dom';
 export class Main {
   constructor(options) {
     this.components = options.components || []
+    this.store = options.store
   }
   getRoot() {
     const $root = $.create('div', 'main')
-    const options = {}
+    const options = {
+      store: this.store
+    }
     this.components = this.components.map(Component => {
       const tag = Component.tag || 'div'
       const className = Component.className || ''
