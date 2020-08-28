@@ -19,5 +19,6 @@ module.exports = {
     'arrow-parens': 'off',
     'require-jsdoc': 'off',
     'operator-linebreak': 'off',
+    'no-invalid-this': 'off'
   },
 };
