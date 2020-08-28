@@ -78,7 +78,7 @@ export class MainGame extends DictionaryComponent {
     const $skip = this.game.$skip.$el
     if (key === 'enter' && event.target.dataset.id === 'answer-input') {
       this.game.sendAnswerWord()
-    } else if (key === 'shift' && $skip) {
+    } else if (event.code === 'ShiftRight' && $skip) {
       this.game.skipWord()
     } else if (key === 'enter' && $card) {
       this.game.translateCard()

@@ -11,3 +11,21 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
+const db = firebase.database()
+
+export class FirebaseClient {
+  get(reference = '/') {
+    return db.ref(reference).once('value')
+  }
+  post(value, reference = '/') {
+    return db.ref(reference).set(value);
+  }
+  update(updates, reference) {
+    return db.ref(reference).update(updates)
+  }
+  delete(reference) {
+    if (reference) {
+      return db.ref(reference).remove()
+    }
+  }
+}
