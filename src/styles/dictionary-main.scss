@@ -124,9 +124,18 @@
       margin: 20px auto 0 auto;
       width: 78%;
       #previous-card-SVG, #next-card-SVG {
+        border: none;
+        background-color: inherit;
         cursor: pointer;
         height: 35px;
         width: 35px;
+        &:focus {
+          outline: none;
+        }
+        &[disabled] {
+          opacity: 0;
+          z-index: -1;
+        }
         svg {
           transition-duration: 0.2s;
           &:hover {

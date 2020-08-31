@@ -1,18 +1,11 @@
 import {$} from '@core/Dom';
-import {
-  createCards,
-  createLearningWords
-} from '@/components/mainGame/game.template';
 import {getData} from '@core/utils';
 
-export const gameTypes = {
-  cards: createCards,
-  learning: createLearningWords
-}
+export const gameTypes = ['cards', 'learning']
 
 export function isExistTypeGame(event) {
   const typegame = $(event.target).data['typegame']
-  return Object.keys(gameTypes).includes(typegame)
+  return gameTypes.includes(typegame)
 }
 
 export function isCard(event) {
@@ -20,13 +13,17 @@ export function isCard(event) {
 }
 
 export function isNextCard(event) {
-  return event.target.parentNode.dataset.id === 'next-card'
-    || getData(event).id === 'next-card'
+  const $target = $(event.target)
+  return (($target.parent.data.id === 'next-card')
+    && ($target.parent.attr('disabled') !== 'true'))
+   || $target.data.id === 'next-card' && $target.attr('disabled') !== 'true'
 }
 
 export function isPrevCard(event) {
-  return event.target.parentNode.dataset.id === 'prev-card'
-    || getData(event).id === 'prev-card'
+  const $target = $(event.target)
+  return (($target.parent.data.id === 'prev-card')
+    && ($target.parent.attr('disabled') !== 'true'))
+    || $target.data.id === 'prev-card' && $target.attr('disabled') !== 'true'
 }
 
 export function isAnswerButton(event) {
@@ -40,4 +37,8 @@ export function isNoActiveTypeGame(event) {
 
 export function isSkipButton(event) {
   return event.target.dataset.id === 'skip-word'
+}
+
+export function $toGameType(type) {
+  return $(document.querySelector(`div[data-typegame=${type}]`))
 }

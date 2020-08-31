@@ -1,10 +1,15 @@
 import {DictionaryComponent} from '@core/DictionaryComponent'
-import {Game} from '@/components/mainGame/Game';
+import {Game} from '@/components/mainGame/Game/Game';
 import {$} from '@core/Dom';
 import {
-  isExistTypeGame, isCard,
-  isNextCard, isPrevCard, isAnswerButton,
-  isNoActiveTypeGame, isSkipButton
+  isExistTypeGame,
+  isCard,
+  isNextCard,
+  isPrevCard,
+  isAnswerButton,
+  isNoActiveTypeGame,
+  isSkipButton,
+  gameTypes
 } from '@/components/mainGame/game.functions';
 
 export class MainGame extends DictionaryComponent {
@@ -17,6 +22,7 @@ export class MainGame extends DictionaryComponent {
       ...options
     })
     this.$root = $root
+    this.store = options.store
   }
 
   toHTML() {
@@ -42,49 +48,49 @@ export class MainGame extends DictionaryComponent {
   init() {
     super.init()
     this.game = new Game('[data-id=game]', {
-      state: [
-        {russian: 'реализовать', english: 'implement'},
-        {russian: 'уколоть', english: 'prick'},
-        {russian: 'исполнитель', english: 'executor'}
-      ]
+      store: this.store,
+      moduleName: 'programming',
+      gameTypes
     })
   }
 
-  onClick(event) {
-    if (isExistTypeGame(event) && isNoActiveTypeGame(event)) {
-      const typegame = $(event.target).data['typegame']
+  onClick(e) {
+    if (isExistTypeGame(e) && isNoActiveTypeGame(e)) {
+      const typegame = $(e.target).data['typegame']
       this.game.changeGameType(typegame)
     }
-    if (isCard(event)) {
+    if (isCard(e)) {
       this.game.translateCard()
     }
-    if (isNextCard(event)) {
+    if (isNextCard(e)) {
       this.game.nextCard()
     }
-    if (isPrevCard(event)) {
+    if (isPrevCard(e)) {
       this.game.prevCard()
     }
-    if (isAnswerButton(event)) {
+    if (isAnswerButton(e)) {
       this.game.sendAnswerWord()
     }
-    if (isSkipButton(event)) {
+    if (isSkipButton(e)) {
       this.game.skipWord()
     }
   }
 
   onKeydown(event) {
     const key = event.key.toLowerCase()
-    const $card = this.game.$card.$el
+    const $card = this.game.cards.$card.$el
     const $skip = this.game.$skip.$el
+    const isNextBtnOff = this.game.cards.$nextBtn.attr('disabled') === 'true'
+    const isPrevBtnOff = this.game.cards.$prevBtn.attr('disabled') === 'true'
     if (key === 'enter' && event.target.dataset.id === 'answer-input') {
       this.game.sendAnswerWord()
     } else if (event.code === 'ShiftRight' && $skip) {
       this.game.skipWord()
     } else if (key === 'enter' && $card) {
       this.game.translateCard()
-    } else if ((key === 'arrowleft' || key ==='a') && $card) {
+    } else if ((key === 'arrowleft' || key ==='a') && $card && !isPrevBtnOff) {
       this.game.prevCard()
-    } else if ((key === 'arrowright'|| key ==='d') && $card) {
+    } else if ((key === 'arrowright'|| key ==='d') && $card && !isNextBtnOff) {
       this.game.nextCard()
     }
   }

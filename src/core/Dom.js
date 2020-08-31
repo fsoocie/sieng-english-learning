@@ -11,6 +11,9 @@ export class Dom {
     }
     return this.$el.innerHTML
   }
+  find(selector) {
+    return $(this.$el.querySelector(selector))
+  }
   text(value) {
     if (value) {
       this.$el.innerText = value
@@ -85,6 +88,9 @@ export class Dom {
   focus() {
     this.$el.focus()
     return this
+  }
+  get parent() {
+    return $(this.$el.parentNode)
   }
   get data() {
     return this.$el.dataset
