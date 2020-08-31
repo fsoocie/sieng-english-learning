@@ -4,11 +4,13 @@ export class Main {
   constructor(options) {
     this.components = options.components || []
     this.store = options.store
+    this.processor = options.processor
   }
   getRoot() {
     const $root = $.create('div', 'main')
     const options = {
-      store: this.store
+      store: this.store,
+      processor: this.processor
     }
     this.components = this.components.map(Component => {
       const tag = Component.tag || 'div'

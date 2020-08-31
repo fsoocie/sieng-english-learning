@@ -1,13 +1,15 @@
 import {nextCardSVG, previousCardSVG} from '@/inlineSVG';
 
-export function createCards() {
+export function createCards(word = '') {
   return `
     <div class="game__card game__block" data-id="game-card">
-        <span data-id="word">love</span>
+        <span data-id="word">${word}</span>
     </div>
     <div class="game__controls">
-      <div id="previous-card-SVG" data-id="prev-card">${previousCardSVG}</div>
-      <div id="next-card-SVG" data-id="next-card">${nextCardSVG}</div>
+      <button id="previous-card-SVG" data-id="prev-card">
+        ${previousCardSVG}
+      </button>
+      <button id="next-card-SVG" data-id="next-card">${nextCardSVG}</button>
     </div>
   `
 }

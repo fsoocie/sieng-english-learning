@@ -2,12 +2,18 @@ const defaultState = {
   modules: {
     programming: {
       date: '23.05.2002',
+      currentIndex: 0,
       currentWord: {
         english: 'success',
         russian: 'успех',
-        progress: 5
+        progress: 3
       },
       words: [
+        {
+          english: 'success',
+          russian: 'успех',
+          progress: 3
+        },
         {
           english: 'split',
           russian: 'разделять',
