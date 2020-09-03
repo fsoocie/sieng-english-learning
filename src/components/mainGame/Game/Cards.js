@@ -1,6 +1,8 @@
 import {createCards} from '@/components/mainGame/game.template';
 import {$, Dom} from '@core/Dom';
-import {prevCurrentWord, nextCurrentWord} from '@/redux/actionCreators';
+import {
+  prevCurrentWord, nextCurrentWord, resetCurrentWord
+} from '@/redux/actionCreators';
 
 export class Cards {
   constructor(selector, options) {
@@ -11,6 +13,9 @@ export class Cards {
     this.init()
   }
   init() {
+    if (!this.gameState.currentWord) {
+      this.store.dispatch(resetCurrentWord(this.moduleName))
+    }
     this.$root.html(this.toHTML(this.gameState.currentWord.english))
     this.findElems()
     this.updateButtons(this.gameState.currentIndex)

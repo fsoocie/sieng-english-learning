@@ -9,6 +9,7 @@ import {
   isAnswerButton,
   isNoActiveTypeGame,
   isSkipButton,
+  isStartAgain,
   gameTypes
 } from '@/components/mainGame/game.functions';
 
@@ -23,6 +24,7 @@ export class MainGame extends DictionaryComponent {
     })
     this.$root = $root
     this.store = options.store
+    this.moduleName = options.moduleName
   }
 
   toHTML() {
@@ -49,7 +51,7 @@ export class MainGame extends DictionaryComponent {
     super.init()
     this.game = new Game('[data-id=game]', {
       store: this.store,
-      moduleName: 'programming',
+      moduleName: this.moduleName,
       gameTypes
     })
   }
@@ -60,7 +62,7 @@ export class MainGame extends DictionaryComponent {
       this.game.changeGameType(typegame)
     }
     if (isCard(e)) {
-      this.game.translateCard()
+      this.game.cards.translateCard()
     }
     if (isNextCard(e)) {
       this.game.nextCard()
@@ -69,25 +71,28 @@ export class MainGame extends DictionaryComponent {
       this.game.prevCard()
     }
     if (isAnswerButton(e)) {
-      this.game.sendAnswerWord()
+      this.game.learning.sendAnswerWord()
     }
     if (isSkipButton(e)) {
-      this.game.skipWord()
+      this.game.learning.skipWord()
+    }
+    if (isStartAgain(e)) {
+      this.game.learning.startAgain()
     }
   }
 
   onKeydown(event) {
     const key = event.key.toLowerCase()
-    const $card = this.game.cards.$card.$el
-    const $skip = this.game.$skip.$el
+    const $card = this.game.cards? this.game.cards.$card.$el: ''
+    const $skip = this.game.learning? this.game.learning.$skip.$el: ''
     const isNextBtnOff = this.game.cards.$nextBtn.attr('disabled') === 'true'
     const isPrevBtnOff = this.game.cards.$prevBtn.attr('disabled') === 'true'
     if (key === 'enter' && event.target.dataset.id === 'answer-input') {
-      this.game.sendAnswerWord()
+      this.game.learning.sendAnswerWord()
     } else if (event.code === 'ShiftRight' && $skip) {
-      this.game.skipWord()
+      this.game.learning.skipWord()
     } else if (key === 'enter' && $card) {
-      this.game.translateCard()
+      this.game.cards.translateCard()
     } else if ((key === 'arrowleft' || key ==='a') && $card && !isPrevBtnOff) {
       this.game.prevCard()
     } else if ((key === 'arrowright'|| key ==='d') && $card && !isNextBtnOff) {

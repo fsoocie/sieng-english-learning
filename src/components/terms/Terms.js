@@ -1,6 +1,7 @@
-import {DictionaryComponent} from '@core/DictionaryComponent';
+import {createTerms} from '@/components/terms/terms.template';
+import {DictionaryStateComponent} from '@core/DictionaryStateComponent';
 
-export class Terms extends DictionaryComponent {
+export class Terms extends DictionaryStateComponent {
   static className = 'terms'
   static tag = 'div'
   constructor($root, options) {
@@ -8,40 +9,21 @@ export class Terms extends DictionaryComponent {
       name: 'Terms',
       ...options
     });
+    this.store = options.store
+    this.moduleName = options.moduleName
+  }
+  prepare() {
+    this.initState(this.$getState)
+    this.$subscribe(state => {
+      this.setState(state)
+    })
+  }
+
+  get template() {
+    return createTerms(this.state.modules[this.moduleName])
   }
 
   toHTML() {
-    return `
-    <div class="terms__header">
-      <span>Термины в модуле (4)</span>
-    </div>
-    <div class="terms__content">
-      <div class="term">
-        <div class="term__english-word">
-          <span>compare</span>
-        </div>
-        <div class="term__russian-word">
-          <span>сопоставить</span>
-        </div>
-      </div>
-      <div class="term">
-        <div class="term__english-word">
-          <span>split</span>
-        </div>
-        <div class="term__russian-word">
-          <span>разделить</span>
-        </div>
-      </div>
-      <div class="term">
-        <div class="term__english-word">
-          <span>implementation</span>
-        </div>
-        <div class="term__russian-word">
-          <span>реализация</span>
-        </div>
-      </div>
-    </div>
-    <button class="edit">Добавить или удалить термины</button>
-    `
+    return this.template
   }
 }
