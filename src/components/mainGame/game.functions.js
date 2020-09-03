@@ -39,6 +39,32 @@ export function isSkipButton(event) {
   return event.target.dataset.id === 'skip-word'
 }
 
+export function isStartAgain(event) {
+  return event.target.dataset.id === 'start-again'
+}
+
 export function $toGameType(type) {
   return $(document.querySelector(`div[data-typegame=${type}]`))
+}
+
+export function rightWordStyles(width) {
+  return `
+    "background-color: rgb(35, 178, 109);
+     height: 100%;
+     width:${width};
+     position: absolute;
+     left: 0;
+     top: 0"
+  `
+}
+
+export function wrongWordStyles(width) {
+  return `
+    "background-color: rgb(255, 114, 91);
+     height: 100%;
+     width:${width};
+     position: absolute;
+     left: 0;
+     top: 0";
+  `
 }

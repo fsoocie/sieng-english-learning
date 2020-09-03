@@ -11,3 +11,7 @@ export function debounce(fn, delay) {
     }, delay)
   }
 }
+
+export function moduleState(store, moduleName) {
+  return store.getState().modules[moduleName]
+}

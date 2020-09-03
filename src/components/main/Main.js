@@ -10,7 +10,8 @@ export class Main {
     const $root = $.create('div', 'main')
     const options = {
       store: this.store,
-      processor: this.processor
+      processor: this.processor,
+      moduleName: 'programming'
     }
     this.components = this.components.map(Component => {
       const tag = Component.tag || 'div'

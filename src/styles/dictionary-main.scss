@@ -229,15 +229,6 @@
             width: 100%;
             height: 40px;
             position: relative;
-            &::before {
-              content: '';
-              background-color: $green;
-              height: 100%;
-              width:75%;
-              position: absolute;
-              left: 0;
-              top: 0;
-            }
           }
           &__description {
             display: flex;
@@ -253,15 +244,6 @@
             width: 100%;
             height: 40px;
             position: relative;
-            &::before {
-              content: '';
-              background-color: $red2;
-              height: 100%;
-              width:25%;
-              position: absolute;
-              left: 0;
-              top: 0;
-            }
           }
           &__description {
             display: flex;
@@ -327,7 +309,6 @@
       margin-bottom: 18px;
       font-family: Raleway, sans-serif;
       letter-spacing: 0.02em;
-      box-shadow: 1px 1px 4px rgba(244,67,54, .6);
       &__english-word {
         border-right: 1.5px rgba(32,32,2, .25) solid;
         width: 50%;
@@ -404,4 +385,9 @@
 @keyframes wrong-input-word {
   0% {color: $red}
   100% {color: $black}
+}
+
+@keyframes start-again {
+  0% {opacity: 1}
+  100% {opacity: 0}
 }

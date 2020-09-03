@@ -1,25 +1,42 @@
-import {PREV_CURRENT_WORD, NEXT_CURRENT_WORD} from '@/redux/types';
+import {
+  PREV_CURRENT_WORD, NEXT_CURRENT_WORD, RESET_CURRENT_WORD, INCREASE_PROGRESS
+} from '@/redux/types';
 
 
 export function rootReducer(action, state) {
   const payload = action.payload
   let module
+  let moduleName
   switch (action.type) {
     case NEXT_CURRENT_WORD:
       module = state.modules[payload.moduleName]
-      return getNewIndexState(state, payload, module.currentIndex + 1)
+      return getNewModuleState(
+          state, payload.moduleName, module.currentIndex + 1
+      )
     case PREV_CURRENT_WORD:
       module = state.modules[payload.moduleName]
-      return getNewIndexState(state, payload, module.currentIndex - 1)
+      return getNewModuleState(
+          state, payload.moduleName, module.currentIndex - 1
+      )
+    case RESET_CURRENT_WORD:
+      return getNewModuleState(state, payload.moduleName, 0)
+    case INCREASE_PROGRESS:
+      module = state.modules[payload.moduleName]
+      moduleName = payload.moduleName
+      const words = state.modules[moduleName].words
+      words.splice(payload.index, 1, {...words[payload.index],
+        progress: words[payload.index].progress + 1})
+      return {...state, modules: {...state.modules,
+        [moduleName]: {...state.modules[moduleName], words}}}
     default:
       return {...state}
   }
 }
 
-function getNewIndexState(state, payload, index) {
-  module = state.modules[payload.moduleName]
+function getNewModuleState(state, moduleName, index) {
+  module = state.modules[moduleName]
   return {...state, modules: {...state.modules,
-    [payload.moduleName]: {...state.modules[payload.moduleName],
+    [moduleName]: {...state.modules[moduleName],
       currentIndex: index,
       currentWord: module.words[index]
     }}}

@@ -1,6 +1,7 @@
 import {$, Dom} from '@core/Dom';
-import {$toGameType, gameTypes} from '@/components/mainGame/game.functions';
+import {$toGameType} from '@/components/mainGame/game.functions';
 import {Cards} from '@/components/mainGame/Game/Cards';
+import {Learning} from '@/components/mainGame/Game/Learning';
 
 export class Game {
   constructor(selector, options) {
@@ -17,12 +18,9 @@ export class Game {
   init() {
     this.selectActiveTheme(this.type)
     const options = {
-      anim: this.anim,
-      store: this.store,
-      moduleName: this.moduleName
+      anim: this.anim.bind(this), store: this.store, moduleName: this.moduleName
     }
     this.cards = new Cards(this.$root, options)
-    this.findElems()
   }
 
   changeGameType(typegame) {
@@ -32,14 +30,12 @@ export class Game {
       this.anim(600)
       setTimeout(() => {
         const options = {
-          anim: this.anim,
-          store: this.store,
-          moduleName: this.moduleName
+          anim: this.anim.bind(this),
+          store: this.store, moduleName: this.moduleName
         }
         typegame === 'cards'
           ? this.cards = new Cards(this.$root, options)
-          : this.$root.html(gameTypes['learning'](this.gameState.currentWord.english))
-        this.findElems()
+          : this.learning = new Learning(this.$root, options)
       }, 290)
     }
   }
@@ -50,10 +46,6 @@ export class Game {
         $type.addClass('themes-game_active')
       } else $type.removeClass('themes-game_active')
     })
-  }
-
-  translateCard() {
-    this.cards.translateCard()
   }
 
   nextCard() {
@@ -68,28 +60,6 @@ export class Game {
     }
   }
 
-  sendAnswerWord() {
-    if (this.$input.value() === this.$word.text()) {
-      this.changeLearningWord('right-input-word', 1000, 'this.gamesState[2]')
-    } else if (this.$input.value() !== this.$word.text()) {
-      this.$input.animate('wrong-input-word', 850)
-    }
-  }
-
-  skipWord() {
-    this.$word.text('right-word')
-    this.changeLearningWord('skip-word', 3000, 'skipped')
-  }
-
-  changeLearningWord(animate, duration, value) {
-    this.$word.animate(animate, duration)
-    this.$input.attr('disabled', true)
-    setTimeout(() => {
-      this.$word.text(value)
-      this.$input.value('').removeAttr('disabled').focus()
-    }, duration)
-  }
-
   anim(duration) {
     if (duration) {
       this.animation = true
@@ -98,15 +68,5 @@ export class Game {
       }, duration)
     }
     return this.animation
-  }
-
-  findElems() {
-    this.$word = this.$root.find('[data-id=word]')
-    this.$input = this.$root.find('[data-id=answer-input]')
-    this.$skip = this.$root.find('[data-id=skip-word]')
-  }
-
-  get gameState() {
-    return this.store.getState().modules[this.moduleName]
   }
 }
