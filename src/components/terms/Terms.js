@@ -14,9 +14,13 @@ export class Terms extends DictionaryStateComponent {
   }
   prepare() {
     this.initState(this.$getState)
-    this.$subscribe(state => {
+    this.unsub = this.$subscribe(state => {
       this.setState(state)
     })
+  }
+  destroy() {
+    super.destroy()
+    this.unsub()
   }
 
   get template() {

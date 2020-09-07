@@ -22,7 +22,7 @@ export class DictionaryComponent extends DomListener {
     this.store.dispatch(action)
   }
   $subscribe(fn) {
-    this.store.subscribe(fn)
+    return this.store.subscribe(fn)
   }
   get $getState() {
     return this.store.getState()

@@ -1,5 +1,6 @@
 import {
-  PREV_CURRENT_WORD, NEXT_CURRENT_WORD, RESET_CURRENT_WORD, INCREASE_PROGRESS
+  PREV_CURRENT_WORD, NEXT_CURRENT_WORD,
+  RESET_CURRENT_WORD, INCREASE_PROGRESS, REMOVE_MODULE
 } from '@/redux/types';
 
 
@@ -28,6 +29,10 @@ export function rootReducer(action, state) {
         progress: words[payload.index].progress + 1})
       return {...state, modules: {...state.modules,
         [moduleName]: {...state.modules[moduleName], words}}}
+    case REMOVE_MODULE:
+      const modules = {...state.modules}
+      delete modules[payload.id]
+      return {...state, modules: modules}
     default:
       return {...state}
   }

@@ -6,6 +6,9 @@
   margin-top: 3%;
   margin-left: 10%;
   width: 55%;
+  .empty-h2 {
+    @include colorBlack(.65)
+  }
   .modules-groups {
     margin-left: 5%;
     width: 50%;
@@ -22,6 +25,10 @@
           letter-spacing: 0.04em;
           margin-right: 3%;
         }
+      }
+      a {
+        @include colorBlack(.9);
+        text-decoration: none;
       }
       &__module {
         transition-duration: 0.2s;

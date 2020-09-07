@@ -1,5 +1,7 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
 import {returnToModulesSVG} from '@/inlineSVG';
+import {ActiveRoute} from '@core/ActiveRoute';
+import {removeModule} from '@/redux/actionCreators';
 
 export class MainSubheader extends DictionaryComponent {
   static className = 'subheader'
@@ -7,20 +9,33 @@ export class MainSubheader extends DictionaryComponent {
   constructor($root, options) {
     super($root, {
       name: 'MainSubheader',
-      listeners: [],
+      listeners: ['click'],
       ...options
     });
     this.$root = $root
+    this.moduleName = options.moduleName
+    this.name = this.$getState.modules[this.moduleName].name
   }
   toHTML() {
     return `
       <div class="subheader__title">
-        <div id="return-to-modules-SVG">${returnToModulesSVG}</div>
-        <span>Программирование</span>
+        <a href="/#dashboard">
+          <div id="return-to-modules-SVG">${returnToModulesSVG}</div>
+        </a>    
+        <span>${this.name}</span>
       </div>
-      <div class="subheader__delete">
-       <span>Удалить модуль</span>
+      <div class="subheader__delete" data-id="remove-module">
+       <span data-id="remove-module">Удалить модуль</span>
       </div>
     `
+  }
+  onClick(event) {
+    if (event.target.dataset.id === 'remove-module') {
+      if (window.confirm(`Вы действительно хотите удалить "${this.name}"?`)) {
+        const prevParams = ActiveRoute.param
+        ActiveRoute.navigate('dashboard')
+        this.$dispatch(removeModule(prevParams))
+      }
+    }
   }
 }
