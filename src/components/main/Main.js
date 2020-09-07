@@ -1,28 +1,27 @@
 import {$} from '@core/Dom';
+import {ComponentPage} from '@core/ComponentPage';
+import {ActiveRoute} from '@core/ActiveRoute';
 
-export class Main {
+export class Main extends ComponentPage {
   constructor(options) {
+    super(options.components)
     this.components = options.components || []
     this.store = options.store
     this.processor = options.processor
   }
   getRoot() {
-    const $root = $.create('div', 'main')
+    debugger
+    if (!this.store.getState().modules[ActiveRoute.param]) {
+      return 'dashboard'
+    }
+    this.$root = $.create('div', 'main')
     const options = {
       store: this.store,
       processor: this.processor,
-      moduleName: 'programming'
+      moduleName: ActiveRoute.param
     }
-    this.components = this.components.map(Component => {
-      const tag = Component.tag || 'div'
-      const className = Component.className || ''
-      const $el = $.create(tag, className)
-      const component = new Component($el, options)
-      $el.html(component.toHTML())
-      $root.append($el)
-      return component
-    })
-    return $root
+    this.setRootTemplate(this.$root, options)
+    return this.$root
   }
   initialize() {
     this.components.forEach(component => {

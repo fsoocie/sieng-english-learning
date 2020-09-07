@@ -8,10 +8,8 @@ export default function createStore(rootReducer, initialState) {
     },
     subscribe(fn) {
       listeners.push(fn)
-      return {
-        unsub() {
-          listeners = listeners.filter(l => l !== fn)
-        }
+      return () => {
+        listeners = listeners.filter(l => l !== fn)
       }
     },
     getState() {

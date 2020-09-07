@@ -1,13 +1,19 @@
 import {progressColors} from '@core/constants';
 
-export function createTerms(state) {
-  console.log(state)
-  const terms = [...state.words]
-      .sort((a, b) => a.progress-b.progress)
-      .map(createTerm).join('')
+export function createTerms(state = {}) {
+  let terms; let count
+  if (state.words) {
+    terms = [...state.words]
+        .sort((a, b) => a.progress-b.progress)
+        .map(createTerm).join('')
+    count = state.words.length
+  } else {
+    terms = 'В модуле нет ни одного термина'
+    count = 0
+  }
   return `
     <div class="terms__header">
-      <span>Термины в модуле (${state.words.length})</span>
+      <span>Термины в модуле (${count})</span>
     </div>
     <div class="terms__content">
      ${terms}
