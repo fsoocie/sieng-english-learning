@@ -62,7 +62,11 @@
 .dictionary-editor-container {
   width: 80%;
   margin: 48px auto 0 auto;
-  .module-title {
+}
+
+.module-title {
+  width: 850px;
+  margin: 40px auto 0 auto;
     &__input {
       transition-duration: 0.1s;
       @include colorBlack(.9);
@@ -90,7 +94,6 @@
       font-weight: bold;
       text-transform: uppercase;
     }
-  }
 }
 
 .editor {
@@ -154,6 +157,11 @@
         .delete-word-SVG {
           cursor: pointer;
           margin-right: 4px;
+          border: none;
+          background-color: inherit;
+          &:active {
+            outline: none;
+          }
           svg {
             transition-duration: 0.2s;
             width: 22px;
@@ -200,4 +208,9 @@
       }
     }
   }
+}
+
+@keyframes delete-blank {
+  from {opacity: 1}
+  to {opacity: 0}
 }

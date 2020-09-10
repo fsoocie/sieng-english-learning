@@ -11,6 +11,10 @@ export class Dom {
     }
     return this.$el.innerHTML
   }
+  insertHTML(position, html) {
+    this.$el.insertAdjacentHTML(position, html)
+    return this
+  }
   find(selector) {
     return $(this.$el.querySelector(selector))
   }
@@ -60,6 +64,10 @@ export class Dom {
     setTimeout(() => {
       this.$el.style.animation = ''
     }, duration)
+    return this
+  }
+  remove() {
+    this.$el.remove()
     return this
   }
   addClass(className) {

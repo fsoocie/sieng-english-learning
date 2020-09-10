@@ -8,7 +8,7 @@ const defaultState = {
         {
           english: 'term',
           russian: 'термин',
-          progress: 0
+          progress: 0,
         },
         {
           english: 'implementation',

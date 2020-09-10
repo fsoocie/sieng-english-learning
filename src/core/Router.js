@@ -25,15 +25,16 @@ export class Router {
   }
 
   changePageHandler() {
-    if (this.page && typeof this.page.getRoot() === 'object') {
+    if (this.page && typeof this.$rootPage === 'object') {
       this.page.destroy()
     }
     const Page = definePage(ActiveRoute, this.routes)
     this.page = new Page(this.store, this.processor)
-    if (typeof this.page.getRoot() === 'string') {
-      ActiveRoute.navigate(this.page.getRoot())
+    this.$rootPage = this.page.getRoot()
+    if (typeof this.$rootPage === 'string') {
+      ActiveRoute.navigate(this.$rootPage)
     } else {
-      this.$placeholder.clear().append(this.page.getRoot())
+      this.$placeholder.clear().append(this.$rootPage)
       this.page.afterInit()
     }
   }

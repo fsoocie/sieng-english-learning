@@ -18,8 +18,10 @@ export function definePage(ActiveRoute, routes) {
       return routes.dictionaryMain
     case 'dashboard':
       return routes.dictionaryDashboard
+    case 'editor':
+      return routes.dictionaryEditor
     default:
-      return routes.dictionaryMain
+      return routes.dictionaryDashboard
   }
 }
 
