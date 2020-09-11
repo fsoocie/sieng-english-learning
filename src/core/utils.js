@@ -18,8 +18,10 @@ export function definePage(ActiveRoute, routes) {
       return routes.dictionaryMain
     case 'dashboard':
       return routes.dictionaryDashboard
+    case 'editor':
+      return routes.dictionaryEditor
     default:
-      return routes.dictionaryMain
+      return routes.dictionaryDashboard
   }
 }
 
@@ -48,4 +50,8 @@ export function getDateDMY(date) {
 export function parseDate(date) {
   const from = date.split('.')
   return new Date(from[2], from[1] - 1, from[0])
+}
+
+export function lengthObj(object) {
+  return Object.keys(object).length
 }

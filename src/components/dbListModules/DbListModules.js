@@ -1,7 +1,9 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
-import {createModuleList} from '@/components/listModules/listModules.template';
+import {
+  createModuleList
+} from '@/components/dbListModules/dbListModules.template';
 
-export class ListModules extends DictionaryComponent {
+export class DbListModules extends DictionaryComponent {
   static tag = 'main'
   static className = 'section-modules'
   constructor($root, options) {

@@ -3,10 +3,12 @@ import {progressColors} from '@core/constants';
 export function createTerms(state = {}) {
   let terms; let count
   if (state.words) {
-    terms = [...state.words]
-        .sort((a, b) => a.progress-b.progress)
-        .map(createTerm).join('')
-    count = state.words.length
+    terms = []
+    Object.keys(state.words).forEach(key => {
+      terms.push(state.words[key])
+    })
+    terms = terms.sort((a, b) => a.progress-b.progress).map(createTerm).join('')
+    count = Object.keys(state.words).length
   } else {
     terms = 'В модуле нет ни одного термина'
     count = 0
@@ -18,7 +20,9 @@ export function createTerms(state = {}) {
     <div class="terms__content">
      ${terms}
     </div>
-    <button class="edit">Добавить или удалить термины</button>
+    <a class="link-edit" href="/#editor/${state.id}">
+      <button class="edit">Добавить или удалить термины</button>
+    </a>
     `
 }
 

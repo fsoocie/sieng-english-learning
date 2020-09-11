@@ -4,19 +4,16 @@ import {ActiveRoute} from '@core/ActiveRoute';
 
 export class Main extends ComponentPage {
   constructor(options) {
-    super(options.components)
+    super(options.components, options.store)
     this.components = options.components || []
-    this.store = options.store
     this.processor = options.processor
   }
   getRoot() {
-    debugger
     if (!this.store.getState().modules[ActiveRoute.param]) {
       return 'dashboard'
     }
     this.$root = $.create('div', 'main')
     const options = {
-      store: this.store,
       processor: this.processor,
       moduleName: ActiveRoute.param
     }
@@ -24,9 +21,7 @@ export class Main extends ComponentPage {
     return this.$root
   }
   initialize() {
-    this.components.forEach(component => {
-      component.init()
-    })
+    super.initialize()
     this.mainGame = this.components.find((c) => c.name === 'MainGame')
     this.keydownHandler = (e) => {
       this.mainGame.onKeydown(e)
@@ -34,9 +29,7 @@ export class Main extends ComponentPage {
     document.addEventListener('keydown', this.keydownHandler)
   }
   destroy() {
-    this.components.forEach(component => {
-      component.destroy()
-    })
+    super.destroy()
     document.removeEventListener('keydown', this.keydownHandler)
   }
 }

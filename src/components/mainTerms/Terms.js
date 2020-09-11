@@ -1,4 +1,4 @@
-import {createTerms} from '@/components/terms/terms.template';
+import {createTerms} from '@/components/mainTerms/mainTerms.template';
 import {DictionaryStateComponent} from '@core/DictionaryStateComponent';
 
 export class Terms extends DictionaryStateComponent {

@@ -14,6 +14,7 @@ export class MainSubheader extends DictionaryComponent {
     });
     this.$root = $root
     this.moduleName = options.moduleName
+    this.processor = options.processor
     this.name = this.$getState.modules[this.moduleName].name
   }
   toHTML() {
@@ -32,9 +33,11 @@ export class MainSubheader extends DictionaryComponent {
   onClick(event) {
     if (event.target.dataset.id === 'remove-module') {
       if (window.confirm(`Вы действительно хотите удалить "${this.name}"?`)) {
-        const prevParams = ActiveRoute.param
-        ActiveRoute.navigate('dashboard')
-        this.$dispatch(removeModule(prevParams))
+        this.processor.delete(`/modules/${this.moduleName}`)
+            .then(() => {
+              this.$dispatch(removeModule(this.moduleName))
+              ActiveRoute.navigate('dashboard')
+            })
       }
     }
   }
