@@ -6,7 +6,7 @@ export class EditTitle extends DictionaryComponent {
 
   constructor($root, options) {
     super($root, {
-      name: 'EditTitle', listeners: [], ...options
+      name: 'EditTitle', listeners: ['keyup'], ...options
     })
     this.store = options.store
     this.moduleName = options.moduleName
@@ -15,11 +15,18 @@ export class EditTitle extends DictionaryComponent {
     return `
       <input
         type="text"
+        data-id="title_input"
         value=${this.$getState.modules[this.moduleName].name}
         class="module-title__input"
         placeholder="Введите название модуля"
       />
       <div class="module-title__describe">Название модуля</div>
     `
+  }
+
+  onKeyup(event) {
+    if (event.key === 'Enter' && event.target.dataset.id === 'title_input') {
+      event.target.blur()
+    }
   }
 }

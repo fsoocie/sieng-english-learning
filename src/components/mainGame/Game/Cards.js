@@ -48,13 +48,12 @@ export class Cards {
     }
   }
   updateButtons(i) {
-    if (i === this.gameState.words.length - 1) {
+    this.$nextBtn.removeAttr('disabled')
+    this.$prevBtn.removeAttr('disabled')
+    if (i === Object.keys(this.gameState.words).length - 1) {
       this.$nextBtn.attr('disabled', true)
-    } else if (!i) {
+    } if (i === 0) {
       this.$prevBtn.attr('disabled', true)
-    } else {
-      this.$nextBtn.removeAttr('disabled')
-      this.$prevBtn.removeAttr('disabled')
     }
   }
   get gameState() {

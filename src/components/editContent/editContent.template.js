@@ -1,17 +1,20 @@
 import {deleteWordSVG} from '@/inlineSVG';
 
 export function createBlanks(state) {
-  const blanks = state.words.map((word, i) => {
-    return createBlank(i, word.english, word.russian)
-  }).join('')
+  const blanks = []
+  Object.keys(state.words).forEach(i => {
+    blanks.push(createBlank(
+        Number(i), state.words[i].progress,
+        state.words[i].english, state.words[i].russian))
+  })
   return `
     <section class="blanks">
-    ${blanks}
+    ${blanks.join('')}
     </section>
   `
 }
 
-export function createBlank(i, en = '', ru = '') {
+export function createBlank(i, progress = 0, en = '', ru = '') {
   return `
     <div class="blank">
       <div class="blank__header">
@@ -20,12 +23,18 @@ export function createBlank(i, en = '', ru = '') {
             ${deleteWordSVG}
         </button>
       </div>
-      <div class="blank__main">
+      <div class="blank__main" data-id="blank" data-progress='${progress}'>
         <div class="blank__russian-word">
-          <input type="text" class="blank__input" value="${en}" />
+          <input 
+            data-id="input_en"
+            type="text"
+            class="blank__input" value="${en}" />
         </div>
         <div class="blank__english-word">
-          <input type="text" class="blank__input" value="${ru}" />
+          <input 
+            data-id="input_ru"
+            type="text"
+            class="blank__input" value="${ru}" />
         </div>
       </div>
     </div>

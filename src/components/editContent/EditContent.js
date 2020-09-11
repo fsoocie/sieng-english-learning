@@ -14,7 +14,7 @@ export class EditContent extends DictionaryStateComponent {
   constructor($root, options) {
     super($root, {
       name: 'EditContent',
-      listeners: ['click'],
+      listeners: ['click', 'keyup'],
       ...options
     })
     this.store = options.store
@@ -58,12 +58,24 @@ export class EditContent extends DictionaryStateComponent {
       setTimeout(() => $blank.remove(), 980)
     }
     if (isAddWord(event)) {
-      const index = this.$blanks
-          .find('.blank:last-child .blank__number').text()
+      const $blank = this.$blanks.find('.blank:last-child .blank__number')
+      const index = $blank.$el? $blank.text(): 0
       this.$blanks.insertHTML(
           'beforeend', createBlank(Number(index))
       )
       this.$blanks.find('.blank:last-child input').focus()
+    }
+  }
+  onKeyup(event) {
+    const id = event.target.dataset.id
+    if (event.key === 'Enter' && (id === 'input_ru' || id === 'input_en')) {
+      const input = event.target
+          .closest('[data-id=blank]')
+          .querySelector(id === 'input_ru'
+            ? '[data-id=input_en]'
+            : '[data-id=input_ru]')
+      input.focus()
+      input.setSelectionRange(input.value.length, input.value.length - 1)
     }
   }
 }

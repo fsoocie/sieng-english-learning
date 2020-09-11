@@ -18,7 +18,9 @@ export class Router {
   init() {
     this.processor = new StateProcessor(new FirebaseClient())
     this.processor.get().then(state => {
+      state = JSON.parse(JSON.stringify(state))
       this.store = createStore(rootReducer, toInitialState(state))
+      this.processor.post(this.store.getState())
       window.addEventListener('hashchange', this.changePageHandler.bind(this))
       this.changePageHandler()
     })

@@ -26,8 +26,7 @@ export function rootReducer(action, state) {
       module = state.modules[payload.moduleName]
       moduleName = payload.moduleName
       words = state.modules[moduleName].words
-      words.splice(payload.index, 1, {...words[payload.index],
-        progress: words[payload.index].progress + 1})
+      words[payload.index].progress++
       return {...state, modules: {...state.modules,
         [moduleName]: {...state.modules[moduleName], words}}}
     case REMOVE_MODULE:

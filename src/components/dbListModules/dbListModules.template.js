@@ -1,6 +1,5 @@
 import {
-  toRightEnding, toRussianMonth, parseDate,
-  getDateDMY
+  toRightEnding, toRussianMonth, parseDate, getDateDMY, lengthObj
 } from '@core/utils';
 
 export function createModuleList(state) {
@@ -39,7 +38,7 @@ function createGroup(date, modules) {
 }
 
 function createModule(module) {
-  const wordsCount = module.words.length
+  const wordsCount = lengthObj(module.words)
   return `
   <a href="/#main/${module.id}">  
     <div class="group__module">

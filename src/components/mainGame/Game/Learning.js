@@ -6,6 +6,7 @@ import {
   nextCurrentWord, resetCurrentWord,
   increaseProgress
 } from '@/redux/actionCreators';
+import {lengthObj} from '@core/utils';
 
 export class Learning {
   constructor(selector, options) {
@@ -49,7 +50,7 @@ export class Learning {
     this.$word.animate(animate, duration)
     this.$input.attr('disabled', true)
     setTimeout(() => {
-      if (this.gameState.words.length === this.gameState.currentIndex + 1) {
+      if (lengthObj(this.gameState.words) === this.gameState.currentIndex + 1) {
         this.$root.html(this.toHTML('result'))
       } else {
         this.store.dispatch(nextCurrentWord(this.moduleName))
@@ -61,7 +62,7 @@ export class Learning {
   startAgain() {
     this.$root.animate('start-again', 900)
     this.anim(900)
-    setTimeout(this.init.bind(this), 890)
+    setTimeout(this.init.bind(this), 880)
   }
   findElems() {
     this.$input = this.$root.find('[data-id=answer-input]')

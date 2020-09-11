@@ -14,7 +14,7 @@ export class DictionaryEditorPage extends Page {
   getRoot() {
     this.page = new Editor({
       components: [Header, EditSubheader, EditTitle, EditContent],
-      store: this.store
+      store: this.store, processor: this.processor
     })
     return this.page.getRoot()
   }
