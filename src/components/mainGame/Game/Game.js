@@ -12,6 +12,7 @@ export class Game {
     this.gameTypes = options.gameTypes
     this.$gameTypes = options.gameTypes.map($toGameType)
     this.animation = false
+    this.processor = options.processor
     this.init()
   }
 
@@ -31,7 +32,8 @@ export class Game {
       setTimeout(() => {
         const options = {
           anim: this.anim.bind(this),
-          store: this.store, moduleName: this.moduleName
+          store: this.store, moduleName: this.moduleName,
+          processor: this.processor
         }
         typegame === 'cards'
           ? this.cards = new Cards(this.$root, options)

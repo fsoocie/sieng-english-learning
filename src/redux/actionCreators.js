@@ -1,6 +1,6 @@
 import {
   PREV_CURRENT_WORD, NEXT_CURRENT_WORD, RESET_CURRENT_WORD,
-  INCREASE_PROGRESS, REMOVE_MODULE
+  INCREASE_PROGRESS, REMOVE_MODULE, ADD_MODULE, UPDATE_MODULE
 } from '@/redux/types';
 
 
@@ -36,6 +36,20 @@ export const removeModule = (id) => {
   return {
     type: REMOVE_MODULE,
     payload: {id}
+  }
+}
+
+export const addModule = (moduleName, moduleState) => {
+  return {
+    type: ADD_MODULE,
+    payload: {moduleName, moduleState}
+  }
+}
+
+export const updateModule = (moduleName, changes) => {
+  return {
+    type: UPDATE_MODULE,
+    payload: {moduleName, changes}
   }
 }
 

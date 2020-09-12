@@ -1,6 +1,7 @@
 import {DictionaryComponent} from '@core/DictionaryComponent'
 import {Game} from '@/components/mainGame/Game/Game';
 import {$} from '@core/Dom';
+import {isEmptyObj} from '@core/utils';
 import {
   isExistTypeGame,
   isCard,
@@ -25,10 +26,13 @@ export class MainGame extends DictionaryComponent {
     this.$root = $root
     this.store = options.store
     this.moduleName = options.moduleName
+    this.processor = options.processor
+    this.words = this.$getState.modules[this.moduleName].words
   }
 
   toHTML() {
-    return `
+    if (this.words && isEmptyObj(this.words)) {
+      return `
     <div class="themes-game">
       <div class="themes-game__block">
         <div class="themes-game__cards themes-game_active"
@@ -45,15 +49,20 @@ export class MainGame extends DictionaryComponent {
     <div class="game" data-id="game">
     </div>
     `
+    }
+    return '<h1>Добавьте новые слова</h1>'
   }
 
   init() {
     super.init()
-    this.game = new Game('[data-id=game]', {
-      store: this.store,
-      moduleName: this.moduleName,
-      gameTypes
-    })
+    if (this.words && isEmptyObj(this.words)) {
+      this.game = new Game('[data-id=game]', {
+        store: this.store,
+        processor: this.processor,
+        moduleName: this.moduleName,
+        gameTypes
+      })
+    }
   }
 
   onClick(e) {
@@ -83,19 +92,23 @@ export class MainGame extends DictionaryComponent {
 
   onKeydown(event) {
     const key = event.key.toLowerCase()
-    const $card = this.game.cards? this.game.cards.$card.$el: ''
-    const $skip = this.game.learning? this.game.learning.$skip.$el: ''
-    const isNextBtnOff = this.game.cards.$nextBtn.attr('disabled') === 'true'
-    const isPrevBtnOff = this.game.cards.$prevBtn.attr('disabled') === 'true'
+    if (this.game) {
+      this.$card = this.game.cards? this.game.cards.$card.$el: ''
+      this.$skip = this.game.learning? this.game.learning.$skip.$el: ''
+      this.isNextBtnOff = this.game.cards.$nextBtn.attr('disabled') === 'true'
+      this.isPrevBtnOff = this.game.cards.$prevBtn.attr('disabled') === 'true'
+    }
     if (key === 'enter' && event.target.dataset.id === 'answer-input') {
       this.game.learning.sendAnswerWord()
-    } else if (event.code === 'ShiftRight' && $skip) {
+    } else if (event.code === 'ShiftRight' && this.$skip) {
       this.game.learning.skipWord()
-    } else if (key === 'enter' && $card) {
+    } else if (key === 'enter' && this.$card) {
       this.game.cards.translateCard()
-    } else if ((key === 'arrowleft' || key ==='a') && $card && !isPrevBtnOff) {
+    } else if (
+      (key === 'arrowleft' || key ==='a') && this.$card && !this.isPrevBtnOff) {
       this.game.prevCard()
-    } else if ((key === 'arrowright'|| key ==='d') && $card && !isNextBtnOff) {
+    } else if (
+      (key === 'arrowright'|| key ==='d') && this.$card && !this.isNextBtnOff) {
       this.game.nextCard()
     }
   }
