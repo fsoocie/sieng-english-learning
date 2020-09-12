@@ -12,4 +12,5 @@ new Router('#app', {
   dictionaryEditor: DictionaryEditorPage
 })
 
-
+// TODO: add box-shadow to module (dashboard)
+// TODO: correct styles add module (dashboard)

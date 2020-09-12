@@ -53,5 +53,12 @@ export function parseDate(date) {
 }
 
 export function lengthObj(object) {
-  return Object.keys(object).length
+  if (object) {
+    return Object.keys(object).length
+  }
+  return 0
+}
+
+export function isEmptyObj(obj) {
+  return Object.keys(obj).length
 }

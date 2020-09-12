@@ -12,11 +12,14 @@ export class EditTitle extends DictionaryComponent {
     this.moduleName = options.moduleName
   }
   toHTML() {
+    const name = this.$getState.modules[this.moduleName]
+      ? this.$getState.modules[this.moduleName].name
+      : 'Новый модуль'
     return `
       <input
         type="text"
         data-id="title_input"
-        value=${this.$getState.modules[this.moduleName].name}
+        value="${name}"
         class="module-title__input"
         placeholder="Введите название модуля"
       />

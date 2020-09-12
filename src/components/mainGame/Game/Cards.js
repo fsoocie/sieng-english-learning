@@ -13,9 +13,7 @@ export class Cards {
     this.init()
   }
   init() {
-    if (!this.gameState.currentWord) {
-      this.store.dispatch(resetCurrentWord(this.moduleName))
-    }
+    this.store.dispatch(resetCurrentWord(this.moduleName))
     this.$root.html(this.toHTML(this.gameState.currentWord.english))
     this.findElems()
     this.updateButtons(this.gameState.currentIndex)

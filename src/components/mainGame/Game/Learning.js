@@ -14,6 +14,7 @@ export class Learning {
     this.anim = options.anim
     this.store = options.store
     this.moduleName = options.moduleName
+    this.processor = options.processor
     this.progress = null
     this.init()
   }
@@ -31,6 +32,12 @@ export class Learning {
   sendAnswerWord() {
     if (this.$input.value().toLowerCase() ===
       this.gameState.currentWord.russian.toLowerCase()) {
+      const newProgress = Number(
+          this.gameState.words[this.gameState.currentIndex].progress) + 1
+      this.processor.update(
+          {progress: newProgress},
+          `/modules/${this.moduleName}/words/${this.gameState.currentIndex}`
+      )
       this.store.dispatch(
           increaseProgress(this.moduleName, this.gameState.currentIndex)
       )

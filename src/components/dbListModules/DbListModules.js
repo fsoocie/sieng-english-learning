@@ -19,10 +19,10 @@ export class DbListModules extends DictionaryComponent {
     ${Object.keys(this.$getState.modules).length
       ? createModuleList(this.$getState)
       : '<h2 class="empty-h2">Создайте новый модуль</h2>'}
-    <section class="create-module">
+    <a href="/#editor/${Date.now()}" class="create-module">
       <div class="create-module__plus">+</div>
       <div class="create-module__text">Создать новый</div>
-    </section>
+    </a>
     <div></div>
     `
   }

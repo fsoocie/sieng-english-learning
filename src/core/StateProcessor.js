@@ -1,13 +1,9 @@
-import {debounce} from '@core/utils';
-
 export class StateProcessor {
-  constructor(client, delay = 800) {
+  constructor(client) {
     this.client = client
-    this.post = debounce(this.post, delay)
-    this.update = debounce(this.update, delay)
   }
   get(reference) {
-    return this.client.get()
+    return this.client.get(reference)
   }
   post(value, path) {
     return this.client.post(value, path)

@@ -1,5 +1,6 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
 import {ActiveRoute} from '@core/ActiveRoute';
+import {updateModule, addModule} from '@/redux/actionCreators';
 
 export class EditSubheader extends DictionaryComponent {
   static className = 'edit-header'
@@ -13,6 +14,7 @@ export class EditSubheader extends DictionaryComponent {
     this.$root = $root
     this.store = options.store
     this.processor = options.processor
+    this.moduleName = options.moduleName
   }
   toHTML() {
     return `
@@ -42,11 +44,23 @@ export class EditSubheader extends DictionaryComponent {
         const english = $blank.querySelector('[data-id=input_en]').value
         const russian = $blank.querySelector('[data-id=input_ru]').value
         const progress = $blank.dataset.progress
-        words.push({english, russian, progress})
+        if (english && russian) {
+          words.push({english, russian, progress})
+        }
       })
-      const changes = {words, name}
-      this.processor.update(changes, `modules/${ActiveRoute.param}`)
-      ActiveRoute.navigate(`main/${ActiveRoute.param}`)
+      const changes = {words: words.length? words: {}, name}
+      if (this.$getState.modules[this.moduleName]) {
+        this.processor.update(changes, `modules/${this.moduleName}`)
+        this.$dispatch(updateModule(this.moduleName, changes))
+      } else {
+        const moduleState = {
+          ...changes, date: new Date().toString(),
+          id: this.moduleName
+        }
+        this.processor.post(moduleState, `/modules/${this.moduleName}`)
+        this.$dispatch(addModule(this.moduleName, moduleState))
+      }
+      ActiveRoute.navigate(`main/${this.moduleName}`)
     }
   }
 }

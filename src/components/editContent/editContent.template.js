@@ -2,11 +2,14 @@ import {deleteWordSVG} from '@/inlineSVG';
 
 export function createBlanks(state) {
   const blanks = []
-  Object.keys(state.words).forEach(i => {
-    blanks.push(createBlank(
-        Number(i), state.words[i].progress,
-        state.words[i].english, state.words[i].russian))
-  })
+  if (state && state.words) {
+    Object.keys(state.words).forEach(i => {
+      blanks.push(createBlank(
+          Number(i), state.words[i].progress,
+          state.words[i].english, state.words[i].russian))
+    })
+  } else blanks.push(createBlank())
+
   return `
     <section class="blanks">
     ${blanks.join('')}
@@ -14,7 +17,7 @@ export function createBlanks(state) {
   `
 }
 
-export function createBlank(i, progress = 0, en = '', ru = '') {
+export function createBlank(i = 0, progress = 0, en = '', ru = '') {
   return `
     <div class="blank">
       <div class="blank__header">
