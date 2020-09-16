@@ -5,11 +5,15 @@ import {Router} from '@core/Router';
 import {DictionaryMainPage} from '@/pages/DictionaryMainPage';
 import {DictionaryDashboardPage} from '@/pages/DictionaryDashboardPage';
 import {DictionaryEditorPage} from '@/pages/DictionaryEditorPage';
+import {RegisterPage} from '@/pages/RegisterPage';
+import {LoginPage} from '@/pages/LoginPage';
 
-new Router('#app', {
+export const router = new Router('#app', {
   dictionaryMain: DictionaryMainPage,
   dictionaryDashboard: DictionaryDashboardPage,
-  dictionaryEditor: DictionaryEditorPage
+  dictionaryEditor: DictionaryEditorPage,
+  register: RegisterPage,
+  login: LoginPage
 })
 
 // TODO: add box-shadow to module (dashboard)

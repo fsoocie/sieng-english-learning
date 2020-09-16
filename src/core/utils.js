@@ -20,6 +20,10 @@ export function definePage(ActiveRoute, routes) {
       return routes.dictionaryDashboard
     case 'editor':
       return routes.dictionaryEditor
+    case 'register':
+      return routes.register
+    case 'login':
+      return routes.login
     default:
       return routes.dictionaryDashboard
   }
@@ -62,3 +66,4 @@ export function lengthObj(object) {
 export function isEmptyObj(obj) {
   return Object.keys(obj).length
 }
+

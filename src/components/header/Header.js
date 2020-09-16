@@ -1,4 +1,5 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
+import auth from '@/shared/FirebaseClient'
 import {
   accountOptionsSVG, booksSVG,
   dictionaryBookSVG, filmsSVG
@@ -10,6 +11,7 @@ export class Header extends DictionaryComponent {
   constructor($root, options) {
     super($root, {
       name: 'Header',
+      listeners: ['click'],
       ...options
     })
     this.$root = $root
@@ -51,9 +53,16 @@ export class Header extends DictionaryComponent {
       <div class="header__user">
         <div class="header__user-container">
           <span class="header__acc-name">fsoocie</span>
-          <div id="account-options-SVG">${accountOptionsSVG}</div>
+          <div 
+          data-id="signout"
+          id="account-options-SVG">${accountOptionsSVG}</div>
         </div>
       </div>
     </div>`
+  }
+  onClick(e) {
+    if (e.target.dataset.id === 'signout') {
+      auth.signOut()
+    }
   }
 }
