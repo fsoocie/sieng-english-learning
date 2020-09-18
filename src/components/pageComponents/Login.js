@@ -1,5 +1,6 @@
 import {$} from '@core/Dom';
 import {ComponentPage} from '@core/ComponentPage';
+import {userId} from '@/shared/FirebaseClient';
 
 export class Login extends ComponentPage {
   constructor(options) {
@@ -7,6 +8,9 @@ export class Login extends ComponentPage {
     this.initProcessor = options.initProcessor
   }
   getRoot() {
+    if (userId()) {
+      return 'dashboard'
+    }
     this.$root = $.create('div', 'login-page')
     const options = {initProcessor: this.initProcessor}
     this.setRootTemplate(this.$root, options)

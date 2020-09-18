@@ -1,4 +1,6 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth'
+import 'firebase/database'
 import {ActiveRoute} from '@core/ActiveRoute';
 import {router} from '@/index';
 
@@ -19,14 +21,16 @@ const auth = firebase.auth()
 auth.onAuthStateChanged(function(user) {
   if (user) {
     userId(user.uid)
+    const route = ActiveRoute.hash
     router.initProcessor().then(() => {
       ActiveRoute.navigate('')
-      ActiveRoute.navigate('dashboard')
+      ActiveRoute.navigate(route)
     })
   } else {
     userId(null)
+    const route = ActiveRoute.hash
     ActiveRoute.navigate('')
-    ActiveRoute.navigate('login')
+    ActiveRoute.navigate(route)
   }
 });
 
@@ -48,19 +52,11 @@ export class FirebaseClient {
 }
 
 export default {
-  async createUser(email, password, options) {
-    try {
-      return await auth.createUserWithEmailAndPassword(email, password)
-    } catch (err) {
-      return err
-    }
+  createUser(email, password) {
+    return auth.createUserWithEmailAndPassword(email, password)
   },
-  async signIn(email, password) {
-    try {
-      return await auth.signInWithEmailAndPassword(email, password)
-    } catch (err) {
-      return err
-    }
+  signIn(email, password) {
+    return auth.signInWithEmailAndPassword(email, password)
   },
   async signOut() {
     try {

@@ -15,6 +15,3 @@ export const router = new Router('#app', {
   register: RegisterPage,
   login: LoginPage
 })
-
-// TODO: add box-shadow to module (dashboard)
-// TODO: correct styles add module (dashboard)

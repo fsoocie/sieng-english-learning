@@ -1,5 +1,5 @@
 import {StateProcessor} from '@core/StateProcessor';
-import {FirebaseClient} from '@/shared/FirebaseClient';
+import {FirebaseClient, userId} from '@/shared/FirebaseClient';
 import createStore from '@/redux/createStore';
 import {rootReducer} from '@/redux/rootReducer';
 import {toInitialState} from '@/redux/initialState';
@@ -23,7 +23,7 @@ export class Router {
   }
   async initProcessor() {
     this.processor = new StateProcessor(new FirebaseClient())
-    let state = await this.processor.get()
+    let state = await this.processor.get(`${userId()}`)
     state = JSON.parse(JSON.stringify(state))
     this.store = createStore(rootReducer, toInitialState(state))
   }

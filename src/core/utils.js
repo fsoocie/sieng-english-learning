@@ -67,3 +67,23 @@ export function isEmptyObj(obj) {
   return Object.keys(obj).length
 }
 
+export function translateErr(err) {
+  switch (err) {
+    case 'auth/invalid-email':
+      return 'E-mail адрес неправильного формата'
+    case 'auth/user-not-found':
+      return 'E-mail не существует'
+    case 'auth/wrong-password':
+      return 'Неверный пароль'
+    case 'auth/weak-password':
+      return 'Слишком слабый пароль'
+    case 'auth/email-already-in-use':
+      return 'Этот E-mail уже используется'
+    case 'auth/username-is-short':
+      return 'Имя слишком короткое'
+    case 'success':
+      return 'Входим в аккаунт...'
+    default:
+      return 'Произошла ошибка'
+  }
+}

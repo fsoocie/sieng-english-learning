@@ -13,7 +13,8 @@ export class Main extends ComponentPage {
     if (!userId()) {
       return 'login'
     }
-    if (!this.store.getState().modules[ActiveRoute.param]) {
+    if (!this.store.getState().modules
+      || !this.store.getState().modules[ActiveRoute.param]) {
       return 'dashboard'
     }
     this.$root = $.create('div', 'main')

@@ -16,7 +16,7 @@ export function createModuleList(state) {
   return `
   <section class="modules-groups">
     ${Object.keys(groups)
-      .sort((a, b) => parseDate(a) - parseDate(b))
+      .sort((a, b) => parseDate(b).getTime() - parseDate(a).getTime())
       .map(key => createGroup(key, groups[key]))
       .join('')}
     </section>

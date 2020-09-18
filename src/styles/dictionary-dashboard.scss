@@ -31,14 +31,14 @@
         text-decoration: none;
       }
       &__module {
+        border-radius: 4px;
         transition-duration: 0.2s;
-        height: 48px;
+        height: 54px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         margin: 0 0 14px 0;
-        border-radius: 2px;
         box-shadow: 1px 2px 4px rgba(32, 32, 2, .2);
         cursor: pointer;
         &:hover {
@@ -66,6 +66,7 @@
     color: $white;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
     &__plus {
       font-size:5.5em;
       font-weight: 300;

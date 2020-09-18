@@ -1,6 +1,7 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
 import {ActiveRoute} from '@core/ActiveRoute';
 import {updateModule, addModule} from '@/redux/actionCreators';
+import {userId} from '@/shared/FirebaseClient';
 
 export class EditSubheader extends DictionaryComponent {
   static className = 'edit-header'
@@ -49,15 +50,17 @@ export class EditSubheader extends DictionaryComponent {
         }
       })
       const changes = {words: words.length? words: {}, name}
-      if (this.$getState.modules[this.moduleName]) {
-        this.processor.update(changes, `modules/${this.moduleName}`)
+      if (this.$getState.modules && this.$getState.modules[this.moduleName]) {
+        this.processor.update(changes, `${userId()}/modules/${this.moduleName}`)
         this.$dispatch(updateModule(this.moduleName, changes))
       } else {
         const moduleState = {
           ...changes, date: new Date().toString(),
           id: this.moduleName
         }
-        this.processor.post(moduleState, `/modules/${this.moduleName}`)
+        this.processor.post(
+            moduleState, `${userId()}/modules/${this.moduleName}`
+        )
         this.$dispatch(addModule(this.moduleName, moduleState))
       }
       ActiveRoute.navigate(`main/${this.moduleName}`)

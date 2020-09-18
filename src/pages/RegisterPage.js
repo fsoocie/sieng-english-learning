@@ -12,7 +12,8 @@ export class RegisterPage extends Page {
   }
   getRoot() {
     this.page = new Register({
-      components: [RegisterComponent], store: this.store
+      components: [RegisterComponent],
+      store: this.store, processor: this.processor
     })
     return this.page.getRoot()
   }
