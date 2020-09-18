@@ -16,7 +16,7 @@ export class DbListModules extends DictionaryComponent {
   }
   toHTML() {
     return `
-    ${Object.keys(this.$getState.modules).length
+    ${this.$getState.modules && Object.keys(this.$getState.modules).length
       ? createModuleList(this.$getState)
       : '<h2 class="empty-h2">Создайте новый модуль</h2>'}
     <a href="/#editor/${Date.now()}" class="create-module">

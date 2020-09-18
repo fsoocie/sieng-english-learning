@@ -4,6 +4,8 @@
 @import "dictionary-dashboard";
 @import "dictionary-main";
 @import "dictionary-editor";
+@import "auth";
+@import "loader";
 
 html {
   @include RobotoRegular();

@@ -2,6 +2,7 @@ import {DictionaryComponent} from '@core/DictionaryComponent';
 import {returnToModulesSVG} from '@/inlineSVG';
 import {ActiveRoute} from '@core/ActiveRoute';
 import {removeModule} from '@/redux/actionCreators';
+import {userId} from '@/shared/FirebaseClient';
 
 export class MainSubheader extends DictionaryComponent {
   static className = 'subheader'
@@ -33,7 +34,7 @@ export class MainSubheader extends DictionaryComponent {
   onClick(event) {
     if (event.target.dataset.id === 'remove-module') {
       if (window.confirm(`Вы действительно хотите удалить "${this.name}"?`)) {
-        this.processor.delete(`/modules/${this.moduleName}`)
+        this.processor.delete(`${userId()}/modules/${this.moduleName}`)
             .then(() => {
               this.$dispatch(removeModule(this.moduleName))
               ActiveRoute.navigate('dashboard')

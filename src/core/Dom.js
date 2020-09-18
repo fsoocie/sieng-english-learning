@@ -43,6 +43,10 @@ export class Dom {
     }
     return this
   }
+  removeChild(node) {
+    this.$el.removeChild(node)
+    return this
+  }
   clear() {
     this.$el.innerHTML = ''
     return this

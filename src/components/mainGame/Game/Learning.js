@@ -7,6 +7,7 @@ import {
   increaseProgress
 } from '@/redux/actionCreators';
 import {lengthObj} from '@core/utils';
+import {userId} from '@/shared/FirebaseClient';
 
 export class Learning {
   constructor(selector, options) {
@@ -36,7 +37,8 @@ export class Learning {
           this.gameState.words[this.gameState.currentIndex].progress) + 1
       this.processor.update(
           {progress: newProgress},
-          `/modules/${this.moduleName}/words/${this.gameState.currentIndex}`
+          // eslint-disable-next-line max-len
+          `${userId()}/modules/${this.moduleName}/words/${this.gameState.currentIndex}`
       )
       this.store.dispatch(
           increaseProgress(this.moduleName, this.gameState.currentIndex)

@@ -1,6 +1,7 @@
 import {$} from '@core/Dom';
 import {ComponentPage} from '@core/ComponentPage';
 import {ActiveRoute} from '@core/ActiveRoute';
+import {userId} from '@/shared/FirebaseClient';
 
 export class Main extends ComponentPage {
   constructor(options) {
@@ -9,7 +10,11 @@ export class Main extends ComponentPage {
     this.processor = options.processor
   }
   getRoot() {
-    if (!this.store.getState().modules[ActiveRoute.param]) {
+    if (!userId()) {
+      return 'login'
+    }
+    if (!this.store.getState().modules
+      || !this.store.getState().modules[ActiveRoute.param]) {
       return 'dashboard'
     }
     this.$root = $.create('div', 'main')

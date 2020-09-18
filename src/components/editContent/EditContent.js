@@ -44,7 +44,9 @@ export class EditContent extends DictionaryStateComponent {
           <span data-id="add-word">Добавить слово</span>
         </div>
       </div>
-      ${createBlanks(this.$getState.modules[this.moduleName])}
+      ${this.$getState.modules
+      ? createBlanks(this.$getState.modules[this.moduleName])
+      : createBlanks({})}
     </main>
     `
   }
