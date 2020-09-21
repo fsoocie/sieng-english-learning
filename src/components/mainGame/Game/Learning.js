@@ -6,7 +6,7 @@ import {
   nextCurrentWord, resetCurrentWord,
   increaseProgress
 } from '@/redux/actionCreators';
-import {lengthObj} from '@core/utils';
+import {lengthObj} from '@core/helpers/utils';
 import {userId} from '@/shared/FirebaseClient';
 
 export class Learning {

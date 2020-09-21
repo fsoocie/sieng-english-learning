@@ -1,5 +1,5 @@
 import {ComponentPage} from '@core/ComponentPage';
-import {ActiveRoute} from '@core/ActiveRoute';
+import {ActiveRoute} from '@core/Router/ActiveRoute';
 import {$} from '@core/Dom';
 import {userId} from '@/shared/FirebaseClient';
 

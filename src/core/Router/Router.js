@@ -1,11 +1,11 @@
-import {StateProcessor} from '@core/StateProcessor';
+import {StateProcessor} from '@/shared/StateProcessor';
 import {FirebaseClient, userId} from '@/shared/FirebaseClient';
 import createStore from '@/redux/createStore';
 import {rootReducer} from '@/redux/rootReducer';
 import {toInitialState} from '@/redux/initialState';
 import {$} from '@core/Dom';
-import {ActiveRoute} from '@core/ActiveRoute';
-import {definePage} from '@core/utils';
+import {ActiveRoute} from '@core/Router/ActiveRoute';
+import {definePage} from '@core/helpers/utils';
 import {Loader} from '@/components/Loader';
 
 export class Router {
@@ -18,11 +18,11 @@ export class Router {
     this.init()
   }
   async init() {
+    this.processor = new StateProcessor(new FirebaseClient())
     this.$placeholder.append(this.loader)
     window.addEventListener('hashchange', this.changePageHandler.bind(this))
   }
   async initProcessor() {
-    this.processor = new StateProcessor(new FirebaseClient())
     let state = await this.processor.get(`${userId()}`)
     state = JSON.parse(JSON.stringify(state))
     this.store = createStore(rootReducer, toInitialState(state))

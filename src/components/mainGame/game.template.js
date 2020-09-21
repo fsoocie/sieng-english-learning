@@ -1,4 +1,4 @@
-import {nextCardSVG, previousCardSVG} from '@/inlineSVG';
+import {nextCardSVG, previousCardSVG} from '@/assets/inlineSVG';
 import {
   rightWordStyles, wrongWordStyles
 } from '@/components/mainGame/game.functions';

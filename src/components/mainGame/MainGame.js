@@ -1,7 +1,7 @@
 import {DictionaryComponent} from '@core/DictionaryComponent'
 import {Game} from '@/components/mainGame/Game/Game';
 import {$} from '@core/Dom';
-import {isEmptyObj} from '@core/utils';
+import {isEmptyObj} from '@core/helpers/utils';
 import {
   isExistTypeGame,
   isCard,

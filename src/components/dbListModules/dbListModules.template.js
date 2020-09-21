@@ -1,6 +1,6 @@
 import {
   toRightEnding, toRussianMonth, parseDate, getDateDMY, lengthObj
-} from '@core/utils';
+} from '@core/helpers/utils';
 
 export function createModuleList(state) {
   const groups = {}

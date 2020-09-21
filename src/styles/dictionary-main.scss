@@ -6,7 +6,8 @@
   align-items: center;
   height: 60px;
   width: 80%;
-  margin: 5px auto 15px auto;
+  max-width: 980px;
+  margin: 72px auto 15px auto;
   &__title {
     display: flex;
     align-items: center;
@@ -36,7 +37,7 @@
     background-color: rgba(244,67,54, .85);
     border-radius: 6px;
     height: 38px;
-    width: 12%;
+    width: 120px;
     cursor: pointer;
     span {
       font-size: 0.9em;
@@ -333,7 +334,7 @@
   border:none;
   margin: 40px auto;
   height: 56px;
-  width: 28%;
+  width: 340px;
   color: $white;
   background-color: $turquoise;
   display: flex;

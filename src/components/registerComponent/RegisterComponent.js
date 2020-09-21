@@ -4,15 +4,15 @@ import {
   removeAlertNode, removeDisabled, setDisabled
 } from '@/components/loginComponent/login.functionals';
 import {AuthAlert} from '@/components/AuthAlert';
-import {translateErr} from '@core/utils';
-import {AUTH_ALERT_DURATION} from '@core/constants';
+import {translateErr} from '@core/helpers/utils';
+import {AUTH_ALERT_DURATION} from '@core/helpers/constants';
 
 export class RegisterComponent extends DictionaryComponent {
   static className = 'auth'
   static tag = 'div'
   constructor($root, options) {
     super($root, {
-      name: 'RegisterComponent', listeners: ['click'], ...options
+      name: 'RegisterComponent', listeners: ['click', 'keyup'], ...options
     })
     this.$root = $root
     this.processor = options.processor
@@ -85,7 +85,6 @@ export class RegisterComponent extends DictionaryComponent {
                 {modules: 0, username: this.$username.value()},
                 `${credentials.user.uid}`
             )
-            this.authAlert('success')
           })
           .catch(err => {
             this.$form.addClass('register-form--no')

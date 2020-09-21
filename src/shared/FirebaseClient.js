@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth'
 import 'firebase/database'
-import {ActiveRoute} from '@core/ActiveRoute';
+import {ActiveRoute} from '@core/Router/ActiveRoute';
 import {router} from '@/index';
 
 const firebaseConfig = {
@@ -21,15 +21,16 @@ const auth = firebase.auth()
 auth.onAuthStateChanged(function(user) {
   if (user) {
     userId(user.uid)
-    const route = ActiveRoute.hash
+    const route = ActiveRoute.hash ? ActiveRoute.hash : 'dashboard'
     router.initProcessor().then(() => {
       ActiveRoute.navigate('')
       ActiveRoute.navigate(route)
     })
   } else {
     userId(null)
-    const route = ActiveRoute.hash
+    let route = ActiveRoute.hash
     ActiveRoute.navigate('')
+    route = route? route : 'login'
     ActiveRoute.navigate(route)
   }
 });

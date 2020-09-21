@@ -1,4 +1,4 @@
-import {progressColors} from '@core/constants';
+import {progressColors} from '@core/helpers/constants';
 
 export function createTerms(state = {}) {
   let terms; let count

@@ -1,4 +1,4 @@
-import {addWordSVG} from '@/inlineSVG';
+import {addWordSVG} from '@/assets/inlineSVG';
 import {
   createBlank, createBlanks
 } from '@/components/editContent/editContent.template';
