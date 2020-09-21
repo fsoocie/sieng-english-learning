@@ -1,16 +1,21 @@
 @import "variables";
 
 .header {
-  min-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   height: 60px;
   background-color: $turquoise;
   $self: &;
   &__container {
+    padding: 0 12px;
     margin: 0 auto;
-    width: 80%;
+    max-width: 960px;
     height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
+    display: flex;
+    justify-content: space-between;
   }
   &__title {
     font-weight: 700;
@@ -83,27 +88,24 @@
     justify-content: flex-end;
     &-container {
       display: flex;
-      cursor: pointer;
       & > .header__acc-name {
         transition-duration: 0.1s;
         color: $white;
         font-weight: 300;
         font-size: 0.9em;
-        margin-right: 4px;
+        margin-right: 8px;
       }
-      & > #account-options-SVG {
-        path {
-          transition-duration: 0.1s;
-        }
+      & > #exit-account-SVG {
+        cursor: pointer;
         width: 16px;
         height: 16px;
-      }
-      &:hover {
-        path{
-          fill: #ccf5f5;
+        path {
+          transition-duration: 0.15s;
         }
-        .header__acc-name {
-          color: #ccf5f5;
+        &:hover {
+          path{
+            fill: $turquoise-dark;
+          }
         }
       }
     }

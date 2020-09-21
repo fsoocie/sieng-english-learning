@@ -3,11 +3,11 @@
 .edit-header {
   width: 100%;
   background-color: $white;
-  /*box-shadow: 0 4px 4px rgba(32,32,2, .2);*/
   &__container {
+    max-width: 980px;
     width: 80%;
     height: 64px;
-    margin: 0 auto;
+    margin: 60px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;

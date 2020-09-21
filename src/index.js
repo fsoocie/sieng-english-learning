@@ -1,7 +1,7 @@
 import '@/styles/index.scss'
-import './inlineSVG'
+import './assets/inlineSVG'
 import '@/shared/FirebaseClient'
-import {Router} from '@core/Router';
+import {Router} from '@core/Router/Router';
 import {DictionaryMainPage} from '@/pages/DictionaryMainPage';
 import {DictionaryDashboardPage} from '@/pages/DictionaryDashboardPage';
 import {DictionaryEditorPage} from '@/pages/DictionaryEditorPage';

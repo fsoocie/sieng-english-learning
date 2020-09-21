@@ -1,9 +1,6 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
 import auth from '@/shared/FirebaseClient'
-import {
-  accountOptionsSVG, booksSVG,
-  dictionaryBookSVG, filmsSVG
-} from '@/inlineSVG';
+import {exitAccountSVG} from '@/assets/inlineSVG';
 
 export class Header extends DictionaryComponent {
   static tag = 'header'
@@ -15,6 +12,7 @@ export class Header extends DictionaryComponent {
       ...options
     })
     this.$root = $root
+    this.store = options.store
   }
   toHTML() {
     return `
@@ -22,40 +20,12 @@ export class Header extends DictionaryComponent {
       <div class="header__title">
         <span>SIENG</span>
       </div>
-      <nav class="sections">
-        <div class="sections__dictionary sections__item sections__item_active">
-          <div class="item__container">
-            <div class="item__content">
-              <div id="dictionary-book-SVG" class="item-svg">
-                ${dictionaryBookSVG}
-              </div>
-              <span class="item__name">Словарь</span>
-            </div>
-          </div>
-        </div>
-        <div class="sections__films sections__item">
-          <div class="item__container">
-            <div class="item__content">
-              <div id="films-SVG" class="item-svg">${filmsSVG}</div>
-              <span class="item__name">Фильмы и сериалы</span>
-            </div>
-          </div>
-        </div>
-        <div class="header__books sections__item">
-          <div class="item__container">
-            <div class="item__content">
-              <div id="books-SVG" class="item-svg">${booksSVG}</div>
-              <span class="item__name">Книги</span>
-            </div>
-          </div>
-        </div>
-      </nav>
       <div class="header__user">
         <div class="header__user-container">
-          <span class="header__acc-name">fsoocie</span>
+          <span class="header__acc-name">${this.$getState.username}</span>
           <div 
           data-id="signout"
-          id="account-options-SVG">${accountOptionsSVG}</div>
+          id="exit-account-SVG">${exitAccountSVG}</div>
         </div>
       </div>
     </div>`

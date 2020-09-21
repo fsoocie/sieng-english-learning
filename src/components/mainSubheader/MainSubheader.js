@@ -1,6 +1,6 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
-import {returnToModulesSVG} from '@/inlineSVG';
-import {ActiveRoute} from '@core/ActiveRoute';
+import {returnToModulesSVG} from '@/assets/inlineSVG';
+import {ActiveRoute} from '@core/Router/ActiveRoute';
 import {removeModule} from '@/redux/actionCreators';
 import {userId} from '@/shared/FirebaseClient';
 

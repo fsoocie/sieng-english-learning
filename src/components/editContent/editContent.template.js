@@ -1,4 +1,4 @@
-import {deleteWordSVG} from '@/inlineSVG';
+import {deleteWordSVG} from '@/assets/inlineSVG';
 
 export function createBlanks(state) {
   const blanks = []

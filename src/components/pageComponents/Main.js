@@ -1,6 +1,6 @@
 import {$} from '@core/Dom';
 import {ComponentPage} from '@core/ComponentPage';
-import {ActiveRoute} from '@core/ActiveRoute';
+import {ActiveRoute} from '@core/Router/ActiveRoute';
 import {userId} from '@/shared/FirebaseClient';
 
 export class Main extends ComponentPage {

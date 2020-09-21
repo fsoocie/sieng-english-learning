@@ -1,7 +1,8 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
-import {ActiveRoute} from '@core/ActiveRoute';
+import {ActiveRoute} from '@core/Router/ActiveRoute';
 import {updateModule, addModule} from '@/redux/actionCreators';
 import {userId} from '@/shared/FirebaseClient';
+import {backSVG} from '@/assets/inlineSVG';
 
 export class EditSubheader extends DictionaryComponent {
   static className = 'edit-header'
@@ -24,7 +25,7 @@ export class EditSubheader extends DictionaryComponent {
             <a class="edit-header__return-link"
              href="/#main/${ActiveRoute.param}">
               <button class="edit-header__return-button">
-                <span id="back-SVG"></span>
+                <span id="back-SVG">${backSVG}</span>
                 <span>Назад</span>
               </button>
             </a>

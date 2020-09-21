@@ -1,8 +1,8 @@
 import {DictionaryComponent} from '@core/DictionaryComponent';
 import auth, {userId} from '@/shared/FirebaseClient';
 import {AuthAlert} from '@/components/AuthAlert';
-import {AUTH_ALERT_DURATION} from '@core/constants';
-import {translateErr} from '@core/utils';
+import {AUTH_ALERT_DURATION} from '@core/helpers/constants';
+import {translateErr} from '@core/helpers/utils';
 import {
   removeAlertNode, removeDisabled, setDisabled
 } from '@/components/loginComponent/login.functionals';
@@ -71,7 +71,6 @@ export class LoginComponent extends DictionaryComponent {
     setDisabled(this.$email, this.$password, this.$button)
     auth.signIn(this.$email.value(), this.$password.value())
         .then(credentials => {
-          this.authAlert('success')
           userId(credentials.user.uid)
           this.initProcessor()
         })
@@ -80,9 +79,7 @@ export class LoginComponent extends DictionaryComponent {
           clearTimeout(this.timeout)
           removeAlertNode()
           removeDisabled(this.$email, this.$password, this.$button)
-          this.$root.append(new AuthAlert(
-              translateErr(err.code), AUTH_ALERT_DURATION
-          ))
+          this.authAlert(err.code)
           this.timeout = setTimeout(removeAlertNode, AUTH_ALERT_DURATION)
         })
   }

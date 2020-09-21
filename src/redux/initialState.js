@@ -1,5 +1,6 @@
 export const defaultState = {
-  modules: {}
+  modules: {},
+  username: ''
 }
 
 export function toInitialState(initialState) {

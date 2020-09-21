@@ -1,5 +1,5 @@
 import {$} from '@core/Dom';
-import {getData} from '@core/utils';
+import {getData} from '@core/helpers/utils';
 
 export const gameTypes = ['cards', 'learning']
 
