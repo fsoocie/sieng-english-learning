@@ -38,6 +38,8 @@
     "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^7.0.2",
     "css-loader": "^4.1.1",
+    "node-forge": ">=0.10.0",
+    "node-fetch": ">=2.6.1",
     "eslint": "^7.5.0",
     "eslint-config-google": "^0.14.0",
     "eslint-loader": "^4.0.2",
