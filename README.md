@@ -4,6 +4,8 @@ This app created to learn english words. You should create module and fill it by
 
 #### **App has deployed to** `sieng-28daa.web.app`
 
+![Sieng Demo](demo.gif)
+
 ## Available Scripts
 
 ### `npm start` or `yarn start`
