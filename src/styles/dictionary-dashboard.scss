@@ -1,24 +1,24 @@
 @import "variables";
 
 .dashboard {
-  max-width: 100%;
-  height: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
 .section-modules {
   overflow: auto;
-  min-width: 980px;
+  width: 980px;
   display: flex;
   justify-content: space-between;
-  margin-top:96px;
+  margin-top: 96px;
   .empty-h2 {
     @include colorBlack(.65)
   }
   .modules-groups {
     margin-left: 52px;
-    width: 50%;
+    flex-basis: 50%;
     min-width: 300px;
     .group {
       margin-bottom: 6%;
@@ -89,6 +89,19 @@
     }
     &:hover {
       background-color: $turquoise-dark;
+    }
+  }
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .create-module {
+      order: -1;
+      margin-bottom: 44px;
+    }
+    .modules-groups {
+      margin-left: 0;
+      width: 95%;
     }
   }
 }

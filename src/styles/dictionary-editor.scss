@@ -4,8 +4,8 @@
   width: 100%;
   background-color: $white;
   &__container {
+    padding: 0 20px;
     max-width: 980px;
-    width: 80%;
     height: 64px;
     margin: 60px auto;
     display: flex;
@@ -60,12 +60,14 @@
 }
 
 .dictionary-editor-container {
-  width: 80%;
+  width: 90%;
   margin: 48px auto 0 auto;
 }
 
 .module-title {
-  width: 850px;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
   margin: 40px auto 0 auto;
     &__input {
       transition-duration: 0.1s;
@@ -94,6 +96,15 @@
       font-weight: bold;
       text-transform: uppercase;
     }
+  @media (max-width: $screen-md-max) {
+    max-width: 600px;
+  }
+  @media (max-width: $screen-sm-max) {
+    align-items: center;
+    max-width: none;
+    width: 100%;
+  }
+
 }
 
 .editor {
@@ -108,7 +119,7 @@
       align-items: center;
       cursor: pointer;
       border-radius: 8px;
-      padding: 16px 64px;
+      padding: 16px 30px;
       #add-word-SVG {
         width: 36px;
         height: 36px;
@@ -117,7 +128,7 @@
       span {
         transition-duration: 0.175s;
         @include colorBlack(0.7);
-        font-size: 1.4em;
+        font-size: 1.3em;
         margin-left: 18px;
         font-weight: bold;
       }
@@ -141,7 +152,7 @@
     align-items: center;
     flex-direction: column;
     .blank {
-      width: 56vw;
+      width: 980px;
       height: 96px;
       display: flex;
       flex-direction: column;
@@ -188,6 +199,10 @@
         height: 100%;
         width: 80%;
         margin: 0 auto 6px auto;
+        .blank__russian-word,
+        .blank__english-word {
+          width: 40%;
+        }
         .blank__input {
           transition-duration: 0.1s;
           @include colorBlack(.8);
@@ -195,7 +210,7 @@
           border: none;
           border-bottom: 1.5px rgba(32,32,2,.3) solid;
           text-align: center;
-          width: 17vw;
+          width: 100%;
           height: 34px;
           font-size: 1.3em;
           &:focus {
@@ -207,6 +222,19 @@
         }
       }
     }
+    @media (max-width: $screen-sm-max) {
+      .blank {
+        height: 74px;
+      }
+    }
+    @media (max-width: $screen-md-max) {
+      .blank {
+        width: 100%;
+      };
+    }
+  }
+  @media (max-width: $screen-sm-max) {
+    margin-top: 34px;
   }
 }
 
